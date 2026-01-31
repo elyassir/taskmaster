@@ -1,3 +1,4 @@
+from pathlib import Path
 import yaml
 import os
 import sys
@@ -28,6 +29,7 @@ class ShellCommand(cmd.Cmd):
 
     def do_exit(self, arg):
         """Exit the shell"""
+        self.manager.stop_all_jobs()
         print("Bye!")
         return True  
     
@@ -52,32 +54,20 @@ class ShellCommand(cmd.Cmd):
         else:
             self.manager.status_jobs(arg)
 
-"""
+    def do_restart(self, arg):
+        """Restart a specific program: restart <name>"""
+        if not arg:
+            print("Error: restart requires a program name.")
+            return
+        self.manager.restart_job(arg)
 
-proc = subprocess.Popen(
-    ["sleep", "60"],
-    stdout=subprocess.PIPE,
-    stderr=subprocess.PIPE
-)
+    def do_reload(self, arg):
+        """Reload the configuration file without stopping running programs"""
+        self.manager.reload_config()
 
-pid = fork();
-if (pid == 0) execvp(...);
-
-"""
-
-"""
-if proc.poll() is None:
-    print("Process still running")
-else:
-    print("Process exited with code", proc.returncode)
-
-    
-proc.terminate()
-
-kill <pid>
-
-
-"""
+    def do_quit(self, arg):
+        """Quit the taskmaster (alias for exit)"""
+        return self.do_exit(arg)
 
 def load_config(file_path):
     """Parse a YAML configuration file, returning the contents as a dictionary."""
@@ -94,21 +84,26 @@ def load_config(file_path):
                 exit(1)
 
 class JobManager:
-    def __init__(self, config):
+    def __init__(self, config, config_path=None):
         self.config = config
+        self.config_path = config_path
         self.jobs = {}
+        self.auto_start_jobs()
+
+    def auto_start_jobs(self):
+        for name, program_cfg in self.config.items():
+            if program_cfg.get('autostart', False):
+                self.start_job(name)
 
     def status_jobs(self, name):
         proc = self.jobs.get(name)
         if not proc:
             print(f"No running job found for program '{name}'.")
             return
-        
         if proc.poll() is None:
             print(f"Program '{name}' is running with PID {proc.pid}.")
         else:
             print(f"Program '{name}' has exited with code {proc.returncode}.")
-            del self.jobs[name]
 
     def status_all_jobs(self):
         for name, proc in self.jobs.items():
@@ -123,21 +118,38 @@ class JobManager:
             print(f"No configuration found for program '{name}'.")
             return
         
+        # Check if already running
+        existing_proc = self.jobs.get(name)
+        if existing_proc and existing_proc.poll() is None:
+            print(f"Program '{name}' is already running with PID {existing_proc.pid}.")
+            return
+        
         cmd = program_cfg.get('cmd')
         if not cmd:
             print(f"No command specified for program '{name}'.")
             return
         
+        stdout_path = Path(program_cfg.get('stdout') or subprocess.DEVNULL)
+        stderr_path = Path(program_cfg.get('stderr') or subprocess.DEVNULL)
+
+        stdout_path.parent.mkdir(parents=True, exist_ok=True)
+        stderr_path.parent.mkdir(parents=True, exist_ok=True)
+
+        if not stdout_path.exists():
+            stdout_path.touch()
+        if not stderr_path.exists():
+            stderr_path.touch()
+
         proc = subprocess.Popen(
             cmd.split(),
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE
+            stdout=open(stdout_path, 'a'),
+            stderr=open(stderr_path, 'a')
         )
         print(f"Started program '{name}' with PID {proc.pid}.")
 
         self.jobs[name] = proc
 
-    def stop_job(self, name):
+    def stop_job(self, name, silent=False):
         proc = self.jobs.get(name)
         if not proc:
             print(f"No running job found for program '{name}'.")
@@ -146,6 +158,16 @@ class JobManager:
         proc.terminate()
         print(f"Stopped program '{name}' with PID {proc.pid}.")
         del self.jobs[name]
+        return True
+
+    def restart_job(self, name):
+        """Restart a job - stop if running, then start"""
+        self.stop_job(name, silent=True)
+        self.start_job(name)
+
+    def stop_all_jobs(self):
+        for name in list(self.jobs.keys()):
+            self.stop_job(name)
 
 def main():
     if (len(sys.argv) != 2):
@@ -154,7 +176,10 @@ def main():
     config = load_config(file_path)
     print("Configuration loaded successfully.")
 
-    ShellCommand(JobManager(config=config)).cmdloop()
+    try:
+        ShellCommand(JobManager(config=config, config_path=file_path)).cmdloop()
+    except KeyboardInterrupt:
+        print("\nGoodbye!")
 
 if __name__ == "__main__":
     try:

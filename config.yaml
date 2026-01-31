@@ -1,39 +1,118 @@
 programs:
-  # nginx:
-  #   cmd: "/usr/local/bin/nginx -c /etc/nginx/test.conf"
-  #   numprocs: 1
-  #   umask: 022
-  #   workingdir: /tmp
-  #   autostart: true
-  #   autorestart: unexpected
-  #   exitcodes:
-  #     - 0
-  #     - 2
-  #   startretries: 3
-  #   starttime: 5
-  #   stopsignal: TERM
-  #   stoptime: 10
-  #   stdout: /tmp/nginx.stdout
-  #   stderr: /tmp/nginx.stderr
-  #   env:
-  #     STARTED_BY: taskmaster
-  #     ANSWER: 42
-
-  script:
-    cmd: "/bin/bash /home/yel/1337/task-master/script.sh"
+  # A simple long-running script that logs timestamps
+  logger:
+    cmd: "/bin/bash /home/yel/1337/task-master/scripts/logger.sh"
     numprocs: 1
     umask: 022
     workingdir: /home/yel/1337/task-master
     autostart: true
-    autorestart: unexpected
+    autorestart: always
     exitcodes:
       - 0
     startretries: 3
     starttime: 2
     stopsignal: TERM
     stoptime: 5
-    stdout: /home/yel/1337/task-master/script.stdout
-    stderr: /home/yel/1337/task-master/script.stderr
+    stdout: /home/yel/1337/task-master/logs/logger.stdout
+    stderr: /home/yel/1337/task-master/logs/logger.stderr
     env:
       STARTED_BY: taskmaster
-      ANSWER: 42
+      LOG_INTERVAL: 5
+
+  # A simple HTTP server using Python
+  webserver:
+    cmd: "/usr/bin/python3 -m http.server 8080"
+    numprocs: 1
+    umask: 022
+    workingdir: /home/yel/1337/task-master
+    autostart: false
+    autorestart: unexpected
+    exitcodes:
+      - 0
+    startretries: 3
+    starttime: 3
+    stopsignal: TERM
+    stoptime: 10
+    stdout: /home/yel/1337/task-master/logs/webserver.stdout
+    stderr: /home/yel/1337/task-master/logs/webserver.stderr
+    env:
+      STARTED_BY: taskmaster
+
+  # A worker script that processes tasks
+  worker:
+    cmd: "/bin/bash /home/yel/1337/task-master/scripts/worker.sh"
+    numprocs: 2
+    umask: 022
+    workingdir: /home/yel/1337/task-master
+    autostart: true
+    autorestart: always
+    exitcodes:
+      - 0
+      - 1
+    startretries: 5
+    starttime: 2
+    stopsignal: TERM
+    stoptime: 5
+    stdout: /home/yel/1337/task-master/logs/worker.stdout
+    stderr: /home/yel/1337/task-master/logs/worker.stderr
+    env:
+      STARTED_BY: taskmaster
+      WORKER_ID: 1
+
+  # A simple ping monitor
+  pingmonitor:
+    cmd: "/bin/bash /home/yel/1337/task-master/scripts/ping_monitor.sh"
+    numprocs: 1
+    umask: 022
+    workingdir: /home/yel/1337/task-master
+    autostart: false
+    autorestart: unexpected
+    exitcodes:
+      - 0
+    startretries: 2
+    starttime: 2
+    stopsignal: TERM
+    stoptime: 5
+    stdout: /home/yel/1337/task-master/logs/pingmonitor.stdout
+    stderr: /home/yel/1337/task-master/logs/pingmonitor.stderr
+    env:
+      PING_TARGET: "8.8.8.8"
+      PING_INTERVAL: 10
+
+  # A simple counter script (quick task)
+  counter:
+    cmd: "/bin/bash /home/yel/1337/task-master/scripts/counter.sh"
+    numprocs: 1
+    umask: 022
+    workingdir: /home/yel/1337/task-master
+    autostart: false
+    autorestart: never
+    exitcodes:
+      - 0
+    startretries: 1
+    starttime: 1
+    stopsignal: TERM
+    stoptime: 3
+    stdout: /home/yel/1337/task-master/logs/counter.stdout
+    stderr: /home/yel/1337/task-master/logs/counter.stderr
+    env:
+      COUNT_TO: 10
+
+  # Sleep daemon - a simple long-running process
+  sleeper:
+    cmd: "/bin/sleep 3600"
+    numprocs: 1
+    umask: 022
+    workingdir: /tmp
+    autostart: false
+    autorestart: always
+    exitcodes:
+      - 0
+    startretries: 3
+    starttime: 1
+    stopsignal: TERM
+    stoptime: 5
+    stdout: /home/yel/1337/task-master/logs/sleeper.stdout
+    stderr: /home/yel/1337/task-master/logs/sleeper.stderr
+    env:
+      STARTED_BY: taskmaster
