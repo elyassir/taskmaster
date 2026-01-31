@@ -1,0 +1,39 @@
+programs:
+  # nginx:
+  #   cmd: "/usr/local/bin/nginx -c /etc/nginx/test.conf"
+  #   numprocs: 1
+  #   umask: 022
+  #   workingdir: /tmp
+  #   autostart: true
+  #   autorestart: unexpected
+  #   exitcodes:
+  #     - 0
+  #     - 2
+  #   startretries: 3
+  #   starttime: 5
+  #   stopsignal: TERM
+  #   stoptime: 10
+  #   stdout: /tmp/nginx.stdout
+  #   stderr: /tmp/nginx.stderr
+  #   env:
+  #     STARTED_BY: taskmaster
+  #     ANSWER: 42
+
+  script:
+    cmd: "/bin/bash /home/yel/1337/task-master/script.sh"
+    numprocs: 1
+    umask: 022
+    workingdir: /home/yel/1337/task-master
+    autostart: true
+    autorestart: unexpected
+    exitcodes:
+      - 0
+    startretries: 3
+    starttime: 2
+    stopsignal: TERM
+    stoptime: 5
+    stdout: /home/yel/1337/task-master/script.stdout
+    stderr: /home/yel/1337/task-master/script.stderr
+    env:
+      STARTED_BY: taskmaster
+      ANSWER: 42
