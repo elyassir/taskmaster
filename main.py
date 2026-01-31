@@ -100,17 +100,19 @@ class JobManager:
         if not proc:
             print(f"No running job found for program '{name}'.")
             return
-        if proc.poll() is None:
-            print(f"Program '{name}' is running with PID {proc.pid}.")
-        else:
-            print(f"Program '{name}' has exited with code {proc.returncode}.")
+        for i, p in enumerate(proc):
+            if p.poll() is None:
+                print(f"Program '{name}' is running with PID {p.pid}.")
+            else:
+                print(f"Program '{name}' has exited with code {p.returncode}.")
 
     def status_all_jobs(self):
         for name, proc in self.jobs.items():
-            if proc.poll() is None:
-                print(f"Program '{name}' is running with PID {proc.pid}.")
-            else:
-                print(f"Program '{name}' has exited with code {proc.returncode}.")
+            for i, p in enumerate(proc):
+                if p.poll() is None:
+                    print(f"Program '{name}' is running with PID {p.pid}.")
+                else:
+                    print(f"Program '{name}' has exited with code {p.returncode}.")
 
     def start_job(self, name):
         program_cfg = self.config.get(name)
@@ -118,12 +120,12 @@ class JobManager:
             print(f"No configuration found for program '{name}'.")
             return
         
-        # Check if already running
+        # Check if already running including numprocs
         existing_proc = self.jobs.get(name)
-        if existing_proc and existing_proc.poll() is None:
-            print(f"Program '{name}' is already running with PID {existing_proc.pid}.")
+        if existing_proc and len(existing_proc) == program_cfg.get('numprocs', 1) and all(p.poll() is None for p in existing_proc):
+            print(f"Program '{name}' is already running with PID {existing_proc[0].pid}.")
             return
-        
+
         cmd = program_cfg.get('cmd')
         if not cmd:
             print(f"No command specified for program '{name}'.")
@@ -140,23 +142,28 @@ class JobManager:
         if not stderr_path.exists():
             stderr_path.touch()
 
-        proc = subprocess.Popen(
+        
+        procs = [subprocess.Popen(
             cmd.split(),
             stdout=open(stdout_path, 'a'),
             stderr=open(stderr_path, 'a')
-        )
-        print(f"Started program '{name}' with PID {proc.pid}.")
+        ) for _ in range(program_cfg.get('numprocs', 1))]
+        
+        for i, p in enumerate(procs):
+            print(f"Started program '{name}' with PID {p.pid}.")
 
-        self.jobs[name] = proc
+        self.jobs[name] = procs
 
     def stop_job(self, name, silent=False):
-        proc = self.jobs.get(name)
-        if not proc:
-            print(f"No running job found for program '{name}'.")
+        procs = self.jobs.get(name)
+        if not procs:
+            if not silent:
+                print(f"No running job found for program '{name}'.")
             return
         
-        proc.terminate()
-        print(f"Stopped program '{name}' with PID {proc.pid}.")
+        for i, p in enumerate(procs):
+            p.terminate()
+            print(f"Stopped program '{name}' with PID {p.pid}.")
         del self.jobs[name]
         return True
 
