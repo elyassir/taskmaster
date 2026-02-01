@@ -32,18 +32,21 @@ class ProcessMonitor(threading.Thread):
             for name, procs in list(self.job_manager.jobs.items()):
                 for i, p in enumerate(procs):
                     if p.poll() is not None:
-                        # program_cfg = self.job_manager.config.get(name)
-                        # autorestart = program_cfg.get('autorestart', False) if program_cfg else False
+                        program_cfg = self.job_manager.config.get(name)
+                        autorestart = program_cfg.get('autorestart', 'never') if program_cfg else 'never'
                         
                         print(f"Program '{name}' has exited with code {p.returncode}.")
-                        # if autorestart:
-                        #     print(f"Auto-restarting '{name}'...")
-                        #     self.job_manager._restart_job_unsafe(name)
-                        # else:
-                        #     del self.job_manager.jobs[name]
-                        #     break
-                        del self.job_manager.jobs[name]
-                        break
+                        if autorestart == "always":
+                            print(f"Auto-restarting '{name}'...")
+                            self.job_manager.restart_job(name)
+                        elif autorestart == "unexpected":
+                            exitcodes = program_cfg.get('exitcodes', [0]) if program_cfg else [0]
+                            if p.returncode not in exitcodes:
+                                print(f"Auto-restarting '{name}'...")
+                                self.job_manager.restart_job(name)
+                        else:
+                            del self.job_manager.jobs[name]
+                            break
 
 
 

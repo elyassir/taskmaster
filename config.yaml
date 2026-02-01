@@ -86,7 +86,7 @@ programs:
     umask: 022
     workingdir: /home/yel/1337/task-master
     autostart: false
-    autorestart: never
+    autorestart: always
     exitcodes:
       - 0
     startretries: 1
@@ -97,6 +97,7 @@ programs:
     stderr: /home/yel/1337/task-master/logs/counter.stderr
     env:
       COUNT_TO: 10
+  
 
   # Sleep daemon - a simple long-running process
   sleeper:
