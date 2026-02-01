@@ -1,0 +1,28 @@
+2026-02-01 18:31:28,408 - INFO - Starting Taskmaster
+2026-02-01 18:31:28,415 - ERROR - Failed to start tail_logs: Exception occurred in preexec_fn.
+2026-02-01 18:31:28,417 - INFO - Started process worker:0 with PID 5597
+2026-02-01 18:31:28,419 - INFO - Started process worker:1 with PID 5599
+2026-02-01 18:31:28,420 - INFO - Started process worker:2 with PID 5601
+2026-02-01 18:34:54,263 - ERROR - Failed to start test_service: Exception occurred in preexec_fn.
+2026-02-01 18:35:21,190 - INFO - Started process backup_script with PID 6663
+2026-02-01 18:37:04,762 - INFO - Starting Taskmaster
+2026-02-01 18:37:04,767 - ERROR - Failed to start tail_logs: Exception occurred in preexec_fn.
+2026-02-01 18:37:04,769 - INFO - Started process worker:0 with PID 6954
+2026-02-01 18:37:04,771 - INFO - Started process worker:1 with PID 6956
+2026-02-01 18:37:04,776 - INFO - Started process worker:2 with PID 6958
+2026-02-01 18:38:08,181 - INFO - Updating program: worker
+2026-02-01 18:38:08,181 - INFO - Stopping process worker:0 (PID 6954)
+2026-02-01 18:38:08,182 - INFO - Process worker:0 (PID 6954) killed by signal 15
+2026-02-01 18:38:09,182 - INFO - Process worker:0 stopped gracefully
+2026-02-01 18:38:09,182 - INFO - Stopping process worker:1 (PID 6956)
+2026-02-01 18:38:09,183 - INFO - Process worker:1 (PID 6956) killed by signal 15
+2026-02-01 18:38:10,182 - INFO - Process worker:1 stopped gracefully
+2026-02-01 18:38:10,183 - INFO - Stopping process worker:2 (PID 6958)
+2026-02-01 18:38:10,183 - INFO - Process worker:2 (PID 6958) killed by signal 15
+2026-02-01 18:38:11,183 - INFO - Process worker:2 stopped gracefully
+2026-02-01 18:38:11,184 - INFO - Configuration reloaded successfully
+2026-02-01 18:38:21,580 - INFO - Updating program: worker
+2026-02-01 18:38:21,585 - INFO - Started process worker:0 with PID 7197
+2026-02-01 18:38:21,588 - INFO - Started process worker:1 with PID 7199
+2026-02-01 18:38:21,591 - INFO - Started process worker:2 with PID 7201
+2026-02-01 18:38:21,591 - INFO - Configuration reloaded successfully

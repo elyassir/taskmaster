@@ -1,0 +1,73 @@
+programs:
+  # Example: Simple long-running process
+  tail_logs:
+    cmd: "tail -f /var/log/system.log"
+    numprocs: 1
+    umask: 022
+    workingdir: /tmp
+    autostart: true
+    autorestart: unexpected
+    exitcodes:
+      - 0
+      - 2
+    startretries: 3
+    starttime: 2
+    stopsignal: TERM
+    stoptime: 10
+    stdout: /tmp/tail.stdout
+    stderr: /tmp/tail.stderr
+    env:
+      STARTED_BY: taskmaster
+      LOG_LEVEL: INFO
+
+  # Example: Multiple instances of a worker process
+  worker:
+    cmd: "python3 -c 'import time; i=0\nwhile True: print(f\"Working {i}\"); i+=1; time.sleep(5)'"
+    numprocs: 3
+    umask: 077
+    workingdir: /tmp
+    autostart: true
+    autorestart: always
+    exitcodes: 0
+    startretries: 3
+    starttime: 1
+    stopsignal: TERM
+    stoptime: 5
+    stdout: /tmp/worker.stdout
+    stderr: /tmp/worker.stderr
+    env:
+      WORKER_ID: "1"
+      ENVIRONMENT: production
+
+  # Example: Process that should not auto-restart
+  backup_script:
+    cmd: "python3 -c 'import time; print(\"Backup starting\"); time.sleep(10); print(\"Backup complete\")'"
+    numprocs: 1
+    autostart: false
+    autorestart: never
+    exitcodes: 0
+    startretries: 0
+    starttime: 2
+    stopsignal: TERM
+    stoptime: 30
+    stdout: /tmp/backup.stdout
+    stderr: /tmp/backup.stderr
+
+  # Example: Process with custom working directory and environment
+  test_service:
+    cmd: "python3 -m http.server 8080"
+    numprocs: 1
+    umask: 022
+    workingdir: /tmp
+    autostart: false
+    autorestart: unexpected
+    exitcodes: [0, 1]
+    startretries: 5
+    starttime: 3
+    stopsignal: INT
+    stoptime: 10
+    stdout: /tmp/http_server.stdout
+    stderr: /tmp/http_server.stderr
+    env:
+      PORT: "8080"
+      HOST: "0.0.0.0"
