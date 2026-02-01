@@ -4,6 +4,48 @@ import os
 import sys
 import subprocess
 import cmd
+import threading
+import time
+from threading import Lock
+
+
+class ProcessMonitor(threading.Thread):
+    """Thread that monitors the status of all jobs"""
+    def __init__(self, job_manager, interval=1):
+        super().__init__(daemon=True)
+        self.job_manager = job_manager
+        self.interval = interval
+        self.stop_event = threading.Event()
+
+    def run(self):
+        print("Monitor started")
+        while not self.stop_event.is_set():
+            self.check_jobs()
+            time.sleep(self.interval)
+
+    def stop(self):
+        self.stop_event.set()
+
+
+    def check_jobs(self):
+        with self.job_manager.lock:  
+            for name, procs in list(self.job_manager.jobs.items()):
+                for i, p in enumerate(procs):
+                    if p.poll() is not None:
+                        # program_cfg = self.job_manager.config.get(name)
+                        # autorestart = program_cfg.get('autorestart', False) if program_cfg else False
+                        
+                        print(f"Program '{name}' has exited with code {p.returncode}.")
+                        # if autorestart:
+                        #     print(f"Auto-restarting '{name}'...")
+                        #     self.job_manager._restart_job_unsafe(name)
+                        # else:
+                        #     del self.job_manager.jobs[name]
+                        #     break
+                        del self.job_manager.jobs[name]
+                        break
+
+
 
 
 # It inherits from cmd.Cmd
@@ -85,6 +127,7 @@ def load_config(file_path):
 
 class JobManager:
     def __init__(self, config, config_path=None):
+        self.lock = Lock()
         self.config = config
         self.config_path = config_path
         self.jobs = {}
@@ -141,8 +184,6 @@ class JobManager:
             stdout_path.touch()
         if not stderr_path.exists():
             stderr_path.touch()
-
-        
         procs = [subprocess.Popen(
             cmd.split(),
             stdout=open(stdout_path, 'a'),
@@ -184,7 +225,10 @@ def main():
     print("Configuration loaded successfully.")
 
     try:
-        ShellCommand(JobManager(config=config, config_path=file_path)).cmdloop()
+        manager = JobManager(config=config, config_path=file_path)
+        monitor = ProcessMonitor(manager)
+        monitor.start()
+        ShellCommand(manager).cmdloop()
     except KeyboardInterrupt:
         print("\nGoodbye!")
 
