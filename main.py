@@ -177,6 +177,15 @@ class JobManager:
             print(f"No command specified for program '{name}'.")
             return
         
+        env = program_cfg.get('env') or {} 
+        workdir = program_cfg.get('workdir') or os.getcwd()
+        umask = program_cfg.get('umask') or 0o022
+
+        def setup():
+            os.umask(umask)
+            os.chdir(workdir)
+            os.environ.update(env)
+
         stdout_path = Path(program_cfg.get('stdout') or subprocess.DEVNULL)
         stderr_path = Path(program_cfg.get('stderr') or subprocess.DEVNULL)
 
@@ -190,7 +199,8 @@ class JobManager:
         procs = [subprocess.Popen(
             cmd.split(),
             stdout=open(stdout_path, 'a'),
-            stderr=open(stderr_path, 'a')
+            stderr=open(stderr_path, 'a'),
+            preexec_fn=setup
         ) for _ in range(program_cfg.get('numprocs', 1))]
         
         for i, p in enumerate(procs):
