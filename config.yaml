@@ -20,13 +20,13 @@ programs:
 
   # Worker - Python with proper output (FIXED)
   worker:
-    cmd: "/bifsn/ bash /home/kamui/Desktop/taskmaster/scripts/worker.sh"
+    cmd: "/bin/bash /home/kamui/Desktop/taskmaster/scripts/worker.sh"
     numprocs: 3
     umask: 022
     workingdir: /home/kamui/Desktop/taskmaster
     autostart: true
     autorestart: never
-    exitcodes: [0,2,3,4,1]
+    exitcodes: [0, 2, 3, 4, 1]
     startretries: 3
     starttime: 3
     stopsignal: INT
@@ -45,8 +45,11 @@ programs:
     workingdir: /home/kamui/Desktop/taskmaster
     autostart: true
     autorestart: always
+    exitcodes: [0]
     startretries: 3
     starttime: 2
+    stopsignal: TERM
+    stoptime: 5
     stdout: /home/kamui/Desktop/taskmaster/logs/ping_monitor.stdout
     stderr: /home/kamui/Desktop/taskmaster/logs/ping_monitor.stderr
     env:
@@ -62,29 +65,45 @@ programs:
     autostart: false
     autorestart: never
     exitcodes: [0]
+    startretries: 3
+    starttime: 1
+    stopsignal: TERM
+    stoptime: 5
     stdout: /home/kamui/Desktop/taskmaster/logs/counter.stdout
     stderr: /home/kamui/Desktop/taskmaster/logs/counter.stderr
     env:
       COUNT_TO: "100"
 
-  # Simple HTTP server for quick testing
+  # Simple HTTP server - direct Python execution (1 process only!)
   http_server:
-    cmd: "python3 -u -m http.server 9000"
+    cmd: "/usr/bin/python3 -u -m http.server 9000"
     numprocs: 1
     umask: 022
     workingdir: /home/kamui/Desktop/taskmaster
     autostart: false
     autorestart: always
+    exitcodes: [0]
+    startretries: 3
+    starttime: 2
+    stopsignal: TERM
+    stoptime: 5
     stdout: /home/kamui/Desktop/taskmaster/logs/http_server.stdout
     stderr: /home/kamui/Desktop/taskmaster/logs/http_server.stderr
-  
+    env:
+      PYTHONUNBUFFERED: "1"
+
+  # Test exit codes
   test_exit:
     cmd: "/bin/bash /home/kamui/Desktop/taskmaster/scripts/test_exit.sh"
     numprocs: 1
+    umask: 022
+    workingdir: /home/kamui/Desktop/taskmaster
     autostart: false
     autorestart: unexpected
-    exitcodes: [0,2]
+    exitcodes: [0, 2]
     startretries: 3
     starttime: 1
+    stopsignal: TERM
+    stoptime: 5
     stdout: /home/kamui/Desktop/taskmaster/logs/test_exit.stdout
     stderr: /home/kamui/Desktop/taskmaster/logs/test_exit.stderr

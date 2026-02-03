@@ -9,34 +9,6 @@ import time
 import signal
 from threading import Lock
 
-# Minimal .env loader: simple KEY=VALUE parsing, ignores comments and blank lines.
-def _simple_load_dotenv(path=None):
-    try:
-        env_path = Path(path) if path else Path(__file__).parent / '.env'
-        if not env_path.exists():
-            return
-        with env_path.open() as f:
-            for line in f:
-                line = line.strip()
-                if not line or line.startswith('#'):
-                    continue
-                if '=' not in line:
-                    continue
-                key, val = line.split('=', 1)
-                key = key.strip()
-                val = val.strip()
-                if (val.startswith('"') and val.endswith('"')) or (val.startswith("'") and val.endswith("'")):
-                    val = val[1:-1]
-                # Don't overwrite existing environment variables
-                if key and key not in os.environ:
-                    os.environ[key] = val
-    except Exception:
-        # keep loader intentionally simple and failure-tolerant
-        pass
-
-# Try loading .env from project root (non-intrusive)
-_simple_load_dotenv()
-
 # Import bonus features (optional)
 try:
     from logger import get_logger
@@ -248,36 +220,8 @@ class JobManager:
         self.config_path = config_path
         self.jobs = {}
         
-        
-        # Build email config from environment variables (optional)
-        # Supported env vars: EMAIL_SMTP_SERVER, EMAIL_SMTP_PORT, EMAIL_USERNAME,
-        # EMAIL_PASSWORD, EMAIL_FROM, EMAIL_TO (comma-separated)
-        smtp_server = os.getenv('EMAIL_SMTP_SERVER') or os.getenv('SMTP_SERVER')
-        if smtp_server:
-            try:
-                smtp_port = int(os.getenv('EMAIL_SMTP_PORT') or os.getenv('SMTP_PORT') or 587)
-            except ValueError:
-                smtp_port = 587
-
-            username = os.getenv('EMAIL_USERNAME') or os.getenv('SMTP_USER')
-            password = os.getenv('EMAIL_PASSWORD') or os.getenv('SMTP_PASS')
-            from_addr = os.getenv('EMAIL_FROM') or username
-            to_addrs_raw = os.getenv('EMAIL_TO') or os.getenv('EMAIL_TO_ADDRS') or ''
-            to_addrs = [a.strip() for a in to_addrs_raw.split(',') if a.strip()]
-
-            email_config = {
-                'smtp_server': smtp_server,
-                'smtp_port': smtp_port,
-                'username': username,
-                'password': password,
-                'from_addr': from_addr,
-                'to_addrs': to_addrs,
-            }
-        else:
-            email_config = None
-
-        # Initialize logger with optional email config
-        self.logger = get_logger(email_config=email_config) if LOGGER_AVAILABLE else None
+        # Initialize logger
+        self.logger = get_logger() if LOGGER_AVAILABLE else None
         
         # Start web dashboard
         self.dashboard = None
@@ -304,6 +248,13 @@ class JobManager:
                     f.write(f"{timestamp} - {level.upper()} - {message}\n")
             except:
                 pass  # Silently fail if can't write
+    
+    def _cleanup_on_exit(self):
+        """Cleanup function called on program exit"""
+        try:
+            self.stop_all_jobs()
+        except:
+            pass
 
     def auto_start_jobs(self):
         """Start all programs with autostart enabled"""
@@ -314,76 +265,42 @@ class JobManager:
     def status_jobs(self, name):
         """Show status of specific program"""
         proc_infos = self.jobs.get(name)
-        # Use consistent column widths for nicer alignment
-        col_instance = 20
-        col_state = 12
-        col_pid = 8
-        col_uptime = 10
-        col_retries = 8
-
-        # If program exists in config but has no running instances, show STOPPED
         if not proc_infos:
-            if name in self.config:
-                print(f"\n{'Instance':<{col_instance}} {'State':<{col_state}} {'PID':<{col_pid}} {'Uptime':<{col_uptime}} {'Retries':<{col_retries}}")
-                print("-" * (col_instance + col_state + col_pid + col_uptime + col_retries + 4))
-                print(f"{name:<{col_instance}} {'STOPPED':<{col_state}} {'-':<{col_pid}} {'-':<{col_uptime}} {'-':<{col_retries}}")
-                return
-            else:
-                print(f"No processes found for program '{name}'")
-                return
-
-        print(f"\n{'Instance':<{col_instance}} {'State':<{col_state}} {'PID':<{col_pid}} {'Uptime':<{col_uptime}} {'Retries':<{col_retries}}")
-        print("-" * (col_instance + col_state + col_pid + col_uptime + col_retries + 4))
-
+            print(f"No processes found for program '{name}'")
+            return
+        
+        print(f"\n{'Instance':<15} {'State':<12} {'PID':<8} {'Uptime':<10} {'Retries':<8}")
+        print("-" * 65)
+        
         for i, proc_info in enumerate(proc_infos):
             instance_name = f"{name}:{i}"
+            uptime = int(time.time() - proc_info.start_time) if proc_info.process.poll() is None else 0
             status = "RUNNING" if proc_info.successfully_started else "STARTING"
-
+            
             if proc_info.process.poll() is None:
-                pid_str = str(proc_info.process.pid)
-                uptime_val = int(time.time() - proc_info.start_time)
-                uptime_str = f"{uptime_val}s"
-                print(f"{instance_name:<{col_instance}} {status:<{col_state}} {pid_str:<{col_pid}} {uptime_str:<{col_uptime}} {proc_info.retry_count:<{col_retries}}")
+                print(f"{instance_name:<15} {status:<12} {proc_info.process.pid:<8} {uptime}s{'':<6} {proc_info.retry_count:<8}")
             else:
-                print(f"{instance_name:<{col_instance}} {'STOPPED':<{col_state}} {'-':<{col_pid}} {'-':<{col_uptime}} {proc_info.retry_count:<{col_retries}}")
+                print(f"{instance_name:<15} {'EXITED':<12} {'-':<8} {'-':<10} {proc_info.retry_count:<8}")
 
     def status_all_jobs(self):
         """Show status of all programs"""
-        # Use same column widths as individual status display
-        col_instance = 20
-        col_state = 12
-        col_pid = 8
-        col_uptime = 10
-        col_retries = 8
-
-        # Show status for all programs defined in config and any running jobs
-        programs = sorted(set(list(self.config.keys()) + list(self.jobs.keys())))
-
-        if not programs:
-            print("\nNo programs configured or running")
+        if not self.jobs:
+            print("\nNo programs running")
             return
-
-        print(f"\n{'Program':<{col_instance}} {'State':<{col_state}} {'PID':<{col_pid}} {'Uptime':<{col_uptime}} {'Retries':<{col_retries}}")
-        print("-" * (col_instance + col_state + col_pid + col_uptime + col_retries + 4))
-
-        for name in programs:
-            proc_infos = self.jobs.get(name)
-            # Not running but configured
-            if not proc_infos:
-                print(f"{name:<{col_instance}} {'STOPPED':<{col_state}} {'-':<{col_pid}} {'-':<{col_uptime}} {'-':<{col_retries}}")
-                continue
-
+        
+        print(f"\n{'Program':<20} {'State':<12} {'PID':<8} {'Uptime':<10} {'Retries':<8}")
+        print("-" * 70)
+        
+        for name, proc_infos in self.jobs.items():
             for i, proc_info in enumerate(proc_infos):
                 instance_name = f"{name}:{i}" if len(proc_infos) > 1 else name
+                uptime = int(time.time() - proc_info.start_time) if proc_info.process.poll() is None else 0
                 status = "RUNNING" if proc_info.successfully_started else "STARTING"
-
+                
                 if proc_info.process.poll() is None:
-                    pid_str = str(proc_info.process.pid)
-                    uptime_val = int(time.time() - proc_info.start_time)
-                    uptime_str = f"{uptime_val}s"
-                    print(f"{instance_name:<{col_instance}} {status:<{col_state}} {pid_str:<{col_pid}} {uptime_str:<{col_uptime}} {proc_info.retry_count:<{col_retries}}")
+                    print(f"{instance_name:<20} {status:<12} {proc_info.process.pid:<8} {uptime}s{'':<6} {proc_info.retry_count:<8}")
                 else:
-                    print(f"{instance_name:<{col_instance}} {'STOPPED':<{col_state}} {'-':<{col_pid}} {'-':<{col_uptime}} {proc_info.retry_count:<{col_retries}}")
+                    print(f"{instance_name:<20} {'EXITED':<12} {'-':<8} {'-':<10} {proc_info.retry_count:<8}")
         print()
 
     def _start_single_process(self, name, program_cfg):
@@ -410,6 +327,19 @@ class JobManager:
 
         def setup():
             try:
+                # Create new process group
+                os.setpgrp()
+                
+                # Set parent death signal (Linux only)
+                # When parent dies, child receives SIGTERM
+                try:
+                    import ctypes
+                    libc = ctypes.CDLL('libc.so.6')
+                    PR_SET_PDEATHSIG = 1
+                    libc.prctl(PR_SET_PDEATHSIG, signal.SIGTERM)
+                except:
+                    pass  # Not available on non-Linux systems
+                
                 os.umask(umask_val)
                 os.chdir(workdir)
             except Exception as e:
@@ -434,14 +364,27 @@ class JobManager:
             stderr = subprocess.DEVNULL
 
         try:
-            proc = subprocess.Popen(
-                cmd,
-                shell=True,
-                stdout=stdout,
-                stderr=stderr,
-                preexec_fn=setup,
-                env=env
-            )
+            # Use shell=False for direct execution when possible
+            if cmd.startswith('/') or cmd.startswith('./'):
+                # Direct path - no shell needed
+                cmd_list = cmd.split()
+                proc = subprocess.Popen(
+                    cmd_list,
+                    stdout=stdout,
+                    stderr=stderr,
+                    preexec_fn=setup,
+                    env=env
+                )
+            else:
+                # Complex command - use shell
+                proc = subprocess.Popen(
+                    cmd,
+                    shell=True,
+                    stdout=stdout,
+                    stderr=stderr,
+                    preexec_fn=setup,
+                    env=env
+                )
             return ProcessInfo(proc, time.time())
         except Exception as e:
             print(f"Failed to start: {e}")
@@ -519,8 +462,7 @@ class JobManager:
                         # Log to file only
                         if self.logger:
                             self.logger.warning(f"Force killed {name}:{i}")
-
-                    self.logger.error(f"Stopped {name}:{i} (PID {proc_info.process.pid})", True)
+                
                 except ProcessLookupError:
                     pass
         
@@ -621,6 +563,25 @@ def main():
                 sys.exit(1)
         ConfigValidator.print_config_summary(config)
     
+    manager = None
+    monitor = None
+    
+    def cleanup_handler(signum, frame):
+        """Handle termination signals"""
+        print(f"\n\nReceived signal {signum}, shutting down...")
+        if manager:
+            manager.stop_all_jobs()
+            if manager.dashboard:
+                manager.dashboard.stop()
+        if monitor:
+            monitor.stop()
+        print("Taskmaster stopped")
+        sys.exit(0)
+    
+    # Register signal handlers for proper cleanup
+    signal.signal(signal.SIGTERM, cleanup_handler)
+    signal.signal(signal.SIGINT, cleanup_handler)
+    
     try:
         manager = JobManager(config=config, config_path=file_path)
         monitor = ProcessMonitor(manager)
@@ -633,13 +594,22 @@ def main():
         
         ShellCommand(manager).cmdloop()
         
-        if manager.dashboard:
-            manager.dashboard.stop()
-            
     except KeyboardInterrupt:
-        print("\nExiting...")
-        if 'manager' in locals():
+        print("\n\nReceived Ctrl+C, shutting down...")
+    except Exception as e:
+        print(f"\nError: {e}")
+        import traceback
+        traceback.print_exc()
+    finally:
+        # Always cleanup on exit
+        if manager:
+            print("Stopping all programs...")
             manager.stop_all_jobs()
+            if manager.dashboard:
+                manager.dashboard.stop()
+        if monitor:
+            monitor.stop()
+        print("Taskmaster stopped")
 
 
 if __name__ == "__main__":

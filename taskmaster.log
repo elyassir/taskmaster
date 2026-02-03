@@ -1,0 +1,763 @@
+2026-02-03 17:23:17 - INFO - Started logger:0 (PID 155656)
+2026-02-03 17:23:17 - INFO - Started worker:0 (PID 155658)
+2026-02-03 17:23:17 - INFO - Started worker:1 (PID 155662)
+2026-02-03 17:23:17 - INFO - Started worker:2 (PID 155665)
+2026-02-03 17:23:17 - INFO - Started ping_monitor:0 (PID 155667)
+2026-02-03 17:23:17 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 17:23:17 - INFO - Restarting 'worker:0' (attempt 1/3)
+2026-02-03 17:23:18 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 17:23:18 - INFO - Restarting 'worker:1' (attempt 1/3)
+2026-02-03 17:23:19 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 17:23:19 - INFO - Restarting 'worker:2' (attempt 1/3)
+2026-02-03 17:23:20 - INFO - Program 'ping_monitor:0' successfully started
+2026-02-03 17:23:21 - INFO - Program 'logger:0' successfully started
+2026-02-03 17:23:21 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 17:23:21 - INFO - Restarting 'worker:0' (attempt 2/3)
+2026-02-03 17:23:22 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 17:23:22 - INFO - Restarting 'worker:1' (attempt 2/3)
+2026-02-03 17:23:23 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 17:23:23 - INFO - Restarting 'worker:2' (attempt 2/3)
+2026-02-03 17:23:25 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 17:23:25 - INFO - Restarting 'worker:0' (attempt 3/3)
+2026-02-03 17:23:26 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 17:23:26 - INFO - Restarting 'worker:1' (attempt 3/3)
+2026-02-03 17:23:27 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 17:23:27 - INFO - Restarting 'worker:2' (attempt 3/3)
+2026-02-03 17:23:28 - INFO - Started http_server:0 (PID 155876)
+2026-02-03 17:23:29 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 17:23:29 - ERROR - Program 'worker:0' failed after 3 attempts
+2026-02-03 17:23:29 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 17:23:29 - ERROR - Program 'worker:1' failed after 3 attempts
+2026-02-03 17:23:29 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 17:23:29 - ERROR - Program 'worker:2' failed after 3 attempts
+2026-02-03 17:23:29 - INFO - Program 'http_server:0' successfully started
+2026-02-03 17:24:25 - INFO - Stopped logger:0 gracefully
+2026-02-03 17:24:25 - ERROR - Stopped logger:0 (PID 155656)
+2026-02-03 17:24:25 - INFO - Program 'logger:0' exited with code -15
+2026-02-03 17:24:25 - INFO - Restarting 'logger:0' (attempt 1/3)
+2026-02-03 17:24:28 - INFO - Program 'logger:0' successfully started
+2026-02-03 17:24:30 - INFO - Email alert sent to ['lazrakz36@gmail.com']
+2026-02-03 17:24:30 - INFO - Stopped ping_monitor:0 gracefully
+2026-02-03 17:24:30 - ERROR - Stopped ping_monitor:0 (PID 155667)
+2026-02-03 17:24:31 - INFO - Program 'ping_monitor:0' exited with code -15
+2026-02-03 17:24:31 - INFO - Restarting 'ping_monitor:0' (attempt 1/3)
+2026-02-03 17:24:32 - INFO - Email alert sent to ['lazrakz36@gmail.com']
+2026-02-03 17:24:32 - INFO - Program 'http_server:0' exited with code -15
+2026-02-03 17:24:32 - INFO - Restarting 'http_server:0' (attempt 1/3)
+2026-02-03 17:24:32 - INFO - Stopped http_server:0 gracefully
+2026-02-03 17:24:32 - ERROR - Stopped http_server:0 (PID 155876)
+2026-02-03 17:24:34 - INFO - Email alert sent to ['lazrakz36@gmail.com']
+2026-02-03 17:25:29 - INFO - Started logger:0 (PID 158680)
+2026-02-03 17:25:29 - INFO - Started worker:0 (PID 158682)
+2026-02-03 17:25:29 - INFO - Started worker:1 (PID 158687)
+2026-02-03 17:25:29 - INFO - Started worker:2 (PID 158689)
+2026-02-03 17:25:29 - INFO - Started ping_monitor:0 (PID 158691)
+2026-02-03 17:25:29 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 17:25:29 - INFO - Restarting 'worker:0' (attempt 1/3)
+2026-02-03 17:25:30 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 17:25:30 - INFO - Restarting 'worker:1' (attempt 1/3)
+2026-02-03 17:25:31 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 17:25:31 - INFO - Restarting 'worker:2' (attempt 1/3)
+2026-02-03 17:25:32 - INFO - Program 'ping_monitor:0' successfully started
+2026-02-03 17:25:33 - INFO - Program 'logger:0' successfully started
+2026-02-03 17:25:33 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 17:25:33 - INFO - Restarting 'worker:0' (attempt 2/3)
+2026-02-03 17:25:34 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 17:25:34 - INFO - Restarting 'worker:1' (attempt 2/3)
+2026-02-03 17:25:35 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 17:25:35 - INFO - Restarting 'worker:2' (attempt 2/3)
+2026-02-03 17:25:37 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 17:25:37 - INFO - Restarting 'worker:0' (attempt 3/3)
+2026-02-03 17:25:38 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 17:25:38 - INFO - Restarting 'worker:1' (attempt 3/3)
+2026-02-03 17:25:39 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 17:25:39 - INFO - Restarting 'worker:2' (attempt 3/3)
+2026-02-03 17:25:41 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 17:25:41 - ERROR - Program 'worker:0' failed after 3 attempts
+2026-02-03 17:25:41 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 17:25:41 - ERROR - Program 'worker:1' failed after 3 attempts
+2026-02-03 17:25:41 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 17:25:41 - ERROR - Program 'worker:2' failed after 3 attempts
+2026-02-03 17:25:42 - INFO - Started http_server:0 (PID 158977)
+2026-02-03 17:25:43 - INFO - Program 'http_server:0' successfully started
+2026-02-03 17:25:48 - INFO - Stopped logger:0 gracefully
+2026-02-03 17:25:48 - ERROR - Stopped logger:0 (PID 158680)
+2026-02-03 17:25:48 - INFO - Program 'logger:0' exited with code -15
+2026-02-03 17:25:48 - INFO - Restarting 'logger:0' (attempt 1/3)
+2026-02-03 17:25:49 - INFO - Program 'ping_monitor:0' exited with code -2
+2026-02-03 17:25:49 - INFO - Restarting 'ping_monitor:0' (attempt 1/3)
+2026-02-03 17:25:50 - INFO - Email alert sent to ['lazrakz36@gmail.com']
+2026-02-03 17:28:40 - INFO - Started logger:0 (PID 161419)
+2026-02-03 17:28:40 - INFO - Started worker:0 (PID 161421)
+2026-02-03 17:28:40 - INFO - Started worker:1 (PID 161425)
+2026-02-03 17:28:40 - INFO - Started worker:2 (PID 161428)
+2026-02-03 17:28:40 - INFO - Started ping_monitor:0 (PID 161430)
+2026-02-03 17:28:40 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 17:28:40 - INFO - Restarting 'worker:0' (attempt 1/3)
+2026-02-03 17:28:41 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 17:28:41 - INFO - Restarting 'worker:1' (attempt 1/3)
+2026-02-03 17:28:42 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 17:28:42 - INFO - Restarting 'worker:2' (attempt 1/3)
+2026-02-03 17:28:43 - INFO - Program 'ping_monitor:0' successfully started
+2026-02-03 17:28:44 - INFO - Program 'logger:0' successfully started
+2026-02-03 17:28:44 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 17:28:44 - INFO - Restarting 'worker:0' (attempt 2/3)
+2026-02-03 17:28:45 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 17:28:45 - INFO - Restarting 'worker:1' (attempt 2/3)
+2026-02-03 17:28:46 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 17:28:46 - INFO - Restarting 'worker:2' (attempt 2/3)
+2026-02-03 17:28:47 - INFO - Started http_server:0 (PID 161546)
+2026-02-03 17:28:48 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 17:28:48 - INFO - Restarting 'worker:0' (attempt 3/3)
+2026-02-03 17:28:49 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 17:28:49 - INFO - Restarting 'worker:1' (attempt 3/3)
+2026-02-03 17:28:50 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 17:28:50 - INFO - Restarting 'worker:2' (attempt 3/3)
+2026-02-03 17:28:51 - INFO - Program 'http_server:0' successfully started
+2026-02-03 17:28:52 - INFO - Stopped logger:0 gracefully
+2026-02-03 17:28:52 - ERROR - Stopped logger:0 (PID 161419)
+2026-02-03 17:28:52 - INFO - Program 'logger:0' exited with code -15
+2026-02-03 17:28:52 - INFO - Restarting 'logger:0' (attempt 1/3)
+2026-02-03 17:28:53 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 17:28:53 - ERROR - Program 'worker:0' failed after 3 attempts
+2026-02-03 17:28:53 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 17:28:53 - ERROR - Program 'worker:1' failed after 3 attempts
+2026-02-03 17:28:53 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 17:28:53 - ERROR - Program 'worker:2' failed after 3 attempts
+2026-02-03 17:28:53 - INFO - Email alert sent to ['lazrakz36@gmail.com']
+2026-02-03 17:28:53 - INFO - Stopped ping_monitor:0 gracefully
+2026-02-03 17:28:53 - ERROR - Stopped ping_monitor:0 (PID 161430)
+2026-02-03 17:28:54 - INFO - Program 'ping_monitor:0' exited with code -15
+2026-02-03 17:28:54 - INFO - Restarting 'ping_monitor:0' (attempt 1/3)
+2026-02-03 17:28:55 - INFO - Email alert sent to ['lazrakz36@gmail.com']
+2026-02-03 17:28:55 - INFO - Program 'http_server:0' exited with code -15
+2026-02-03 17:28:55 - INFO - Restarting 'http_server:0' (attempt 1/3)
+2026-02-03 17:28:55 - INFO - Stopped http_server:0 gracefully
+2026-02-03 17:28:55 - ERROR - Stopped http_server:0 (PID 161546)
+2026-02-03 17:28:57 - INFO - Started logger:0 (PID 161900)
+2026-02-03 17:28:57 - INFO - Started worker:0 (PID 161902)
+2026-02-03 17:28:57 - INFO - Started worker:1 (PID 161907)
+2026-02-03 17:28:57 - INFO - Started worker:2 (PID 161909)
+2026-02-03 17:28:57 - INFO - Started ping_monitor:0 (PID 161911)
+2026-02-03 17:28:57 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 17:28:57 - INFO - Restarting 'worker:0' (attempt 1/3)
+2026-02-03 17:28:58 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 17:28:58 - INFO - Restarting 'worker:1' (attempt 1/3)
+2026-02-03 17:28:59 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 17:28:59 - INFO - Restarting 'worker:2' (attempt 1/3)
+2026-02-03 17:29:00 - INFO - Program 'ping_monitor:0' successfully started
+2026-02-03 17:29:01 - INFO - Program 'logger:0' successfully started
+2026-02-03 17:29:01 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 17:29:01 - INFO - Restarting 'worker:0' (attempt 2/3)
+2026-02-03 17:29:02 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 17:29:02 - INFO - Restarting 'worker:1' (attempt 2/3)
+2026-02-03 17:29:03 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 17:29:03 - INFO - Restarting 'worker:2' (attempt 2/3)
+2026-02-03 17:29:05 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 17:29:05 - INFO - Restarting 'worker:0' (attempt 3/3)
+2026-02-03 17:29:06 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 17:29:06 - INFO - Restarting 'worker:1' (attempt 3/3)
+2026-02-03 17:29:07 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 17:29:07 - INFO - Restarting 'worker:2' (attempt 3/3)
+2026-02-03 17:29:09 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 17:29:09 - ERROR - Program 'worker:0' failed after 3 attempts
+2026-02-03 17:29:09 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 17:29:09 - ERROR - Program 'worker:1' failed after 3 attempts
+2026-02-03 17:29:09 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 17:29:09 - ERROR - Program 'worker:2' failed after 3 attempts
+2026-02-03 17:29:42 - INFO - Stopped logger:0 gracefully
+2026-02-03 17:29:42 - ERROR - Stopped logger:0 (PID 161900)
+2026-02-03 17:29:42 - INFO - Program 'logger:0' exited with code -15
+2026-02-03 17:29:42 - INFO - Restarting 'logger:0' (attempt 1/3)
+2026-02-03 17:29:46 - INFO - Started logger:0 (PID 163253)
+2026-02-03 17:29:46 - INFO - Started worker:0 (PID 163255)
+2026-02-03 17:29:46 - INFO - Started worker:1 (PID 163263)
+2026-02-03 17:29:46 - INFO - Started worker:2 (PID 163265)
+2026-02-03 17:29:46 - INFO - Started ping_monitor:0 (PID 163267)
+2026-02-03 17:29:46 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 17:29:46 - INFO - Restarting 'worker:0' (attempt 1/3)
+2026-02-03 17:29:47 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 17:29:47 - INFO - Restarting 'worker:1' (attempt 1/3)
+2026-02-03 17:29:48 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 17:29:48 - INFO - Restarting 'worker:2' (attempt 1/3)
+2026-02-03 17:29:49 - INFO - Program 'ping_monitor:0' successfully started
+2026-02-03 17:29:50 - INFO - Program 'logger:0' successfully started
+2026-02-03 17:29:50 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 17:29:50 - INFO - Restarting 'worker:0' (attempt 2/3)
+2026-02-03 17:29:51 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 17:29:51 - INFO - Restarting 'worker:1' (attempt 2/3)
+2026-02-03 17:29:52 - INFO - Started http_server:0 (PID 163381)
+2026-02-03 17:29:52 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 17:29:52 - INFO - Restarting 'worker:2' (attempt 2/3)
+2026-02-03 17:29:54 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 17:29:54 - INFO - Restarting 'worker:0' (attempt 3/3)
+2026-02-03 17:29:55 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 17:29:55 - INFO - Restarting 'worker:1' (attempt 3/3)
+2026-02-03 17:29:56 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 17:29:56 - INFO - Restarting 'worker:2' (attempt 3/3)
+2026-02-03 17:29:57 - INFO - Program 'http_server:0' successfully started
+2026-02-03 17:29:58 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 17:29:58 - ERROR - Program 'worker:0' failed after 3 attempts
+2026-02-03 17:29:58 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 17:29:58 - ERROR - Program 'worker:1' failed after 3 attempts
+2026-02-03 17:29:58 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 17:29:58 - ERROR - Program 'worker:2' failed after 3 attempts
+2026-02-03 17:30:10 - INFO - Program 'http_server:0' exited with code -15
+2026-02-03 17:30:10 - INFO - Restarting 'http_server:0' (attempt 1/3)
+2026-02-03 17:30:10 - INFO - Stopped http_server:0 gracefully
+2026-02-03 17:30:10 - ERROR - Stopped http_server:0 (PID 163381)
+2026-02-03 17:30:12 - INFO - Email alert sent to ['lazrakz36@gmail.com']
+2026-02-03 17:31:01 - INFO - Stopped logger:0 gracefully
+2026-02-03 17:31:01 - ERROR - Stopped logger:0 (PID 163253)
+2026-02-03 17:31:01 - INFO - Program 'logger:0' exited with code -15
+2026-02-03 17:31:01 - INFO - Restarting 'logger:0' (attempt 1/3)
+2026-02-03 17:31:52 - INFO - Started logger:0 (PID 165766)
+2026-02-03 17:31:52 - INFO - Started worker:0 (PID 165768)
+2026-02-03 17:31:52 - INFO - Started worker:1 (PID 165773)
+2026-02-03 17:31:52 - INFO - Started worker:2 (PID 165775)
+2026-02-03 17:31:52 - INFO - Started ping_monitor:0 (PID 165777)
+2026-02-03 17:31:52 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 17:31:52 - INFO - Restarting 'worker:0' (attempt 1/3)
+2026-02-03 17:31:53 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 17:31:53 - INFO - Restarting 'worker:1' (attempt 1/3)
+2026-02-03 17:31:54 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 17:31:54 - INFO - Restarting 'worker:2' (attempt 1/3)
+2026-02-03 17:31:55 - INFO - Program 'ping_monitor:0' successfully started
+2026-02-03 17:31:56 - INFO - Program 'logger:0' successfully started
+2026-02-03 17:31:56 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 17:31:56 - INFO - Restarting 'worker:0' (attempt 2/3)
+2026-02-03 17:31:57 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 17:31:57 - INFO - Restarting 'worker:1' (attempt 2/3)
+2026-02-03 17:31:58 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 17:31:58 - INFO - Restarting 'worker:2' (attempt 2/3)
+2026-02-03 17:31:58 - INFO - Started http_server:0 (PID 165920)
+2026-02-03 17:32:00 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 17:32:00 - INFO - Restarting 'worker:0' (attempt 3/3)
+2026-02-03 17:32:01 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 17:32:01 - INFO - Restarting 'worker:1' (attempt 3/3)
+2026-02-03 17:32:02 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 17:32:02 - INFO - Restarting 'worker:2' (attempt 3/3)
+2026-02-03 17:32:03 - INFO - Program 'http_server:0' successfully started
+2026-02-03 17:32:04 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 17:32:04 - ERROR - Program 'worker:0' failed after 3 attempts
+2026-02-03 17:32:04 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 17:32:04 - ERROR - Program 'worker:1' failed after 3 attempts
+2026-02-03 17:32:04 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 17:32:04 - ERROR - Program 'worker:2' failed after 3 attempts
+2026-02-03 17:34:25 - INFO - Program 'http_server:0' exited with code -15
+2026-02-03 17:34:25 - INFO - Restarting 'http_server:0' (attempt 1/3)
+2026-02-03 17:34:27 - INFO - Program 'http_server:0' successfully started
+2026-02-03 17:34:29 - INFO - Stopped logger:0 gracefully
+2026-02-03 17:34:29 - ERROR - Stopped logger:0 (PID 165766)
+2026-02-03 17:34:30 - INFO - Program 'logger:0' exited with code -15
+2026-02-03 17:34:30 - INFO - Restarting 'logger:0' (attempt 1/3)
+2026-02-03 17:34:33 - INFO - Started logger:0 (PID 168400)
+2026-02-03 17:34:33 - INFO - Started worker:0 (PID 168402)
+2026-02-03 17:34:33 - INFO - Started worker:1 (PID 168406)
+2026-02-03 17:34:33 - INFO - Started worker:2 (PID 168409)
+2026-02-03 17:34:33 - INFO - Started ping_monitor:0 (PID 168411)
+2026-02-03 17:34:33 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 17:34:33 - INFO - Restarting 'worker:0' (attempt 1/3)
+2026-02-03 17:34:34 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 17:34:34 - INFO - Restarting 'worker:1' (attempt 1/3)
+2026-02-03 17:34:35 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 17:34:35 - INFO - Restarting 'worker:2' (attempt 1/3)
+2026-02-03 17:34:36 - INFO - Program 'ping_monitor:0' successfully started
+2026-02-03 17:34:37 - INFO - Program 'logger:0' successfully started
+2026-02-03 17:34:37 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 17:34:37 - INFO - Restarting 'worker:0' (attempt 2/3)
+2026-02-03 17:34:38 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 17:34:38 - INFO - Restarting 'worker:1' (attempt 2/3)
+2026-02-03 17:34:39 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 17:34:39 - INFO - Restarting 'worker:2' (attempt 2/3)
+2026-02-03 17:34:41 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 17:34:41 - INFO - Restarting 'worker:0' (attempt 3/3)
+2026-02-03 17:34:42 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 17:34:42 - INFO - Restarting 'worker:1' (attempt 3/3)
+2026-02-03 17:34:43 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 17:34:43 - INFO - Restarting 'worker:2' (attempt 3/3)
+2026-02-03 17:34:43 - INFO - Started http_server:0 (PID 168692)
+2026-02-03 17:34:45 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 17:34:45 - ERROR - Program 'worker:0' failed after 3 attempts
+2026-02-03 17:34:45 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 17:34:45 - ERROR - Program 'worker:1' failed after 3 attempts
+2026-02-03 17:34:45 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 17:34:45 - ERROR - Program 'worker:2' failed after 3 attempts
+2026-02-03 17:34:45 - INFO - Program 'http_server:0' successfully started
+2026-02-03 17:35:19 - INFO - Program 'http_server:0' exited with code -15
+2026-02-03 17:35:19 - INFO - Restarting 'http_server:0' (attempt 1/3)
+2026-02-03 17:35:21 - INFO - Program 'http_server:0' successfully started
+2026-02-03 17:35:24 - INFO - Stopped logger:0 gracefully
+2026-02-03 17:35:24 - ERROR - Stopped logger:0 (PID 168400)
+2026-02-03 17:35:25 - INFO - Program 'logger:0' exited with code -15
+2026-02-03 17:35:25 - INFO - Restarting 'logger:0' (attempt 1/3)
+2026-02-03 17:35:26 - INFO - Email alert sent to ['lazrakz36@gmail.com']
+2026-02-03 17:35:26 - INFO - Stopped ping_monitor:0 gracefully
+2026-02-03 17:35:26 - ERROR - Stopped ping_monitor:0 (PID 168411)
+2026-02-03 17:35:27 - INFO - Program 'ping_monitor:0' exited with code -15
+2026-02-03 17:35:27 - INFO - Restarting 'ping_monitor:0' (attempt 1/3)
+2026-02-03 17:35:28 - INFO - Email alert sent to ['lazrakz36@gmail.com']
+2026-02-03 17:35:28 - INFO - Stopped http_server:0 gracefully
+2026-02-03 17:35:28 - ERROR - Stopped http_server:0 (PID 169505)
+2026-02-03 17:35:29 - INFO - Program 'http_server:0' exited with code -15
+2026-02-03 17:35:29 - INFO - Restarting 'http_server:0' (attempt 2/3)
+2026-02-03 17:35:31 - INFO - Email alert sent to ['lazrakz36@gmail.com']
+2026-02-03 17:35:48 - INFO - Started logger:0 (PID 170194)
+2026-02-03 17:35:48 - INFO - Started worker:0 (PID 170197)
+2026-02-03 17:35:48 - INFO - Started worker:1 (PID 170202)
+2026-02-03 17:35:48 - INFO - Started worker:2 (PID 170204)
+2026-02-03 17:35:48 - INFO - Started ping_monitor:0 (PID 170206)
+2026-02-03 17:35:48 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 17:35:48 - INFO - Restarting 'worker:0' (attempt 1/3)
+2026-02-03 17:35:49 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 17:35:49 - INFO - Restarting 'worker:1' (attempt 1/3)
+2026-02-03 17:35:50 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 17:35:50 - INFO - Restarting 'worker:2' (attempt 1/3)
+2026-02-03 17:35:51 - INFO - Program 'ping_monitor:0' successfully started
+2026-02-03 17:35:52 - INFO - Program 'logger:0' successfully started
+2026-02-03 17:35:52 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 17:35:52 - INFO - Restarting 'worker:0' (attempt 2/3)
+2026-02-03 17:35:53 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 17:35:53 - INFO - Restarting 'worker:1' (attempt 2/3)
+2026-02-03 17:35:54 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 17:35:54 - INFO - Restarting 'worker:2' (attempt 2/3)
+2026-02-03 17:35:56 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 17:35:56 - INFO - Restarting 'worker:0' (attempt 3/3)
+2026-02-03 17:35:57 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 17:35:57 - INFO - Restarting 'worker:1' (attempt 3/3)
+2026-02-03 17:35:58 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 17:35:58 - INFO - Restarting 'worker:2' (attempt 3/3)
+2026-02-03 17:36:00 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 17:36:00 - ERROR - Program 'worker:0' failed after 3 attempts
+2026-02-03 17:36:00 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 17:36:00 - ERROR - Program 'worker:1' failed after 3 attempts
+2026-02-03 17:36:00 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 17:36:00 - ERROR - Program 'worker:2' failed after 3 attempts
+2026-02-03 17:36:03 - INFO - Started http_server:0 (PID 170578)
+2026-02-03 17:36:03 - WARNING - Program 'http_server:0' died before startup (exit code 1)
+2026-02-03 17:36:03 - INFO - Restarting 'http_server:0' (attempt 1/3)
+2026-02-03 17:36:05 - WARNING - Program 'http_server:0' died before startup (exit code 1)
+2026-02-03 17:36:05 - INFO - Restarting 'http_server:0' (attempt 2/3)
+2026-02-03 17:36:07 - WARNING - Program 'http_server:0' died before startup (exit code 1)
+2026-02-03 17:36:07 - INFO - Restarting 'http_server:0' (attempt 3/3)
+2026-02-03 17:36:09 - WARNING - Program 'http_server:0' died before startup (exit code 1)
+2026-02-03 17:36:09 - ERROR - Program 'http_server:0' failed after 3 attempts
+2026-02-03 17:36:12 - INFO - Stopped logger:0 gracefully
+2026-02-03 17:36:12 - ERROR - Stopped logger:0 (PID 170194)
+2026-02-03 17:36:13 - INFO - Program 'logger:0' exited with code -15
+2026-02-03 17:36:13 - INFO - Restarting 'logger:0' (attempt 1/3)
+2026-02-03 17:36:14 - INFO - Email alert sent to ['lazrakz36@gmail.com']
+2026-02-03 17:36:14 - INFO - Stopped ping_monitor:0 gracefully
+2026-02-03 17:36:14 - ERROR - Stopped ping_monitor:0 (PID 170206)
+2026-02-03 17:36:14 - INFO - Program 'ping_monitor:0' exited with code -15
+2026-02-03 17:36:14 - INFO - Restarting 'ping_monitor:0' (attempt 1/3)
+2026-02-03 17:36:15 - INFO - Email alert sent to ['lazrakz36@gmail.com']
+2026-02-03 17:37:39 - INFO - Started logger:0 (PID 172707)
+2026-02-03 17:37:39 - INFO - Started worker:0 (PID 172711)
+2026-02-03 17:37:39 - INFO - Started worker:1 (PID 172717)
+2026-02-03 17:37:39 - INFO - Started worker:2 (PID 172719)
+2026-02-03 17:37:39 - INFO - Started ping_monitor:0 (PID 172721)
+2026-02-03 17:37:39 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 17:37:39 - INFO - Restarting 'worker:0' (attempt 1/3)
+2026-02-03 17:37:40 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 17:37:40 - INFO - Restarting 'worker:1' (attempt 1/3)
+2026-02-03 17:37:41 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 17:37:41 - INFO - Restarting 'worker:2' (attempt 1/3)
+2026-02-03 17:37:42 - INFO - Program 'ping_monitor:0' successfully started
+2026-02-03 17:37:43 - INFO - Program 'logger:0' successfully started
+2026-02-03 17:37:43 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 17:37:43 - INFO - Restarting 'worker:0' (attempt 2/3)
+2026-02-03 17:37:44 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 17:37:44 - INFO - Restarting 'worker:1' (attempt 2/3)
+2026-02-03 17:37:45 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 17:37:45 - INFO - Restarting 'worker:2' (attempt 2/3)
+2026-02-03 17:37:47 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 17:37:47 - INFO - Restarting 'worker:0' (attempt 3/3)
+2026-02-03 17:37:48 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 17:37:48 - INFO - Restarting 'worker:1' (attempt 3/3)
+2026-02-03 17:37:49 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 17:37:49 - INFO - Restarting 'worker:2' (attempt 3/3)
+2026-02-03 17:37:51 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 17:37:51 - ERROR - Program 'worker:0' failed after 3 attempts
+2026-02-03 17:37:51 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 17:37:51 - ERROR - Program 'worker:1' failed after 3 attempts
+2026-02-03 17:37:51 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 17:37:51 - ERROR - Program 'worker:2' failed after 3 attempts
+2026-02-03 17:37:54 - INFO - Stopped logger:0 gracefully
+2026-02-03 17:37:54 - ERROR - Stopped logger:0 (PID 172707)
+2026-02-03 17:37:54 - INFO - Program 'logger:0' exited with code -15
+2026-02-03 17:37:54 - INFO - Restarting 'logger:0' (attempt 1/3)
+2026-02-03 17:37:55 - INFO - Email alert sent to ['lazrakz36@gmail.com']
+2026-02-03 17:37:56 - INFO - Stopped ping_monitor:0 gracefully
+2026-02-03 17:37:56 - ERROR - Stopped ping_monitor:0 (PID 172721)
+2026-02-03 17:37:56 - INFO - Program 'ping_monitor:0' exited with code -15
+2026-02-03 17:37:56 - INFO - Restarting 'ping_monitor:0' (attempt 1/3)
+2026-02-03 17:37:57 - INFO - Email alert sent to ['lazrakz36@gmail.com']
+2026-02-03 17:40:40 - INFO - Started logger:0 (PID 177089)
+2026-02-03 17:40:40 - INFO - Started worker:0 (PID 177091)
+2026-02-03 17:40:40 - INFO - Started worker:1 (PID 177096)
+2026-02-03 17:40:40 - INFO - Started worker:2 (PID 177098)
+2026-02-03 17:40:40 - INFO - Started ping_monitor:0 (PID 177100)
+2026-02-03 17:40:40 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 17:40:40 - INFO - Restarting 'worker:0' (attempt 1/3)
+2026-02-03 17:40:41 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 17:40:41 - INFO - Restarting 'worker:1' (attempt 1/3)
+2026-02-03 17:40:42 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 17:40:42 - INFO - Restarting 'worker:2' (attempt 1/3)
+2026-02-03 17:40:43 - INFO - Program 'ping_monitor:0' successfully started
+2026-02-03 17:40:44 - INFO - Stopped logger:0 gracefully
+2026-02-03 17:40:44 - ERROR - Stopped logger:0 (PID 177089)
+2026-02-03 17:40:44 - WARNING - Program 'logger:0' died before startup (exit code -15)
+2026-02-03 17:40:44 - INFO - Restarting 'logger:0' (attempt 1/3)
+2026-02-03 17:40:45 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 17:40:45 - INFO - Restarting 'worker:0' (attempt 2/3)
+2026-02-03 17:40:46 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 17:40:46 - INFO - Restarting 'worker:1' (attempt 2/3)
+2026-02-03 17:40:47 - ERROR - Failed to send email alert: [Errno 101] Network is unreachable
+2026-02-03 17:40:47 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 17:40:47 - INFO - Restarting 'worker:2' (attempt 2/3)
+2026-02-03 17:40:47 - INFO - Stopped ping_monitor:0 gracefully
+2026-02-03 17:40:47 - ERROR - Stopped ping_monitor:0 (PID 177100)
+2026-02-03 17:40:48 - INFO - Program 'ping_monitor:0' exited with code -15
+2026-02-03 17:40:48 - INFO - Restarting 'ping_monitor:0' (attempt 1/3)
+2026-02-03 17:40:51 - INFO - Program 'ping_monitor:0' successfully started
+2026-02-03 17:40:57 - ERROR - Failed to send email alert: [Errno 101] Network is unreachable
+2026-02-03 17:59:06 - INFO - Started logger:0 (PID 191773)
+2026-02-03 17:59:07 - INFO - Started worker:0 (PID 191775)
+2026-02-03 17:59:07 - INFO - Started worker:1 (PID 191779)
+2026-02-03 17:59:07 - INFO - Started worker:2 (PID 191782)
+2026-02-03 17:59:07 - INFO - Started ping_monitor:0 (PID 191784)
+2026-02-03 17:59:07 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 17:59:07 - INFO - Restarting 'worker:0' (attempt 1/3)
+2026-02-03 17:59:08 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 17:59:08 - INFO - Restarting 'worker:1' (attempt 1/3)
+2026-02-03 17:59:09 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 17:59:09 - INFO - Restarting 'worker:2' (attempt 1/3)
+2026-02-03 17:59:10 - INFO - Program 'ping_monitor:0' successfully started
+2026-02-03 17:59:11 - INFO - Program 'logger:0' successfully started
+2026-02-03 17:59:11 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 17:59:11 - INFO - Restarting 'worker:0' (attempt 2/3)
+2026-02-03 17:59:12 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 17:59:12 - INFO - Restarting 'worker:1' (attempt 2/3)
+2026-02-03 17:59:13 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 17:59:13 - INFO - Restarting 'worker:2' (attempt 2/3)
+2026-02-03 17:59:15 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 17:59:15 - INFO - Restarting 'worker:0' (attempt 3/3)
+2026-02-03 17:59:16 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 17:59:16 - INFO - Restarting 'worker:1' (attempt 3/3)
+2026-02-03 17:59:17 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 17:59:17 - INFO - Restarting 'worker:2' (attempt 3/3)
+2026-02-03 17:59:19 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 17:59:19 - ERROR - Program 'worker:0' failed after 3 attempts
+2026-02-03 17:59:19 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 17:59:19 - ERROR - Program 'worker:1' failed after 3 attempts
+2026-02-03 17:59:19 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 17:59:19 - ERROR - Program 'worker:2' failed after 3 attempts
+2026-02-03 17:59:48 - INFO - Program 'logger:0' exited with code -15
+2026-02-03 17:59:48 - INFO - Restarting 'logger:0' (attempt 1/3)
+2026-02-03 17:59:51 - INFO - Program 'logger:0' successfully started
+2026-02-03 18:00:06 - INFO - Program 'logger:0' exited with code -15
+2026-02-03 18:00:06 - INFO - Restarting 'logger:0' (attempt 2/3)
+2026-02-03 18:00:09 - INFO - Program 'logger:0' successfully started
+2026-02-03 18:00:30 - INFO - Program 'logger:0' exited with code -15
+2026-02-03 18:00:30 - INFO - Restarting 'logger:0' (attempt 3/3)
+2026-02-03 18:00:33 - INFO - Program 'logger:0' successfully started
+2026-02-03 18:01:53 - INFO - Stopped logger:0 gracefully
+2026-02-03 18:01:53 - ERROR - Stopped logger:0 (PID 193971)
+2026-02-03 18:01:54 - INFO - Program 'logger:0' exited with code -15
+2026-02-03 18:01:54 - ERROR - Program 'logger:0' failed after 3 attempts
+2026-02-03 18:01:57 - INFO - Email alert sent to ['lazrakz36@gmail.com']
+2026-02-03 18:02:14 - INFO - Started logger:0 (PID 195664)
+2026-02-03 18:02:14 - INFO - Started worker:0 (PID 195666)
+2026-02-03 18:02:14 - INFO - Started worker:1 (PID 195671)
+2026-02-03 18:02:14 - INFO - Started worker:2 (PID 195673)
+2026-02-03 18:02:14 - INFO - Started ping_monitor:0 (PID 195675)
+2026-02-03 18:02:14 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 18:02:14 - INFO - Restarting 'worker:0' (attempt 1/3)
+2026-02-03 18:02:15 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 18:02:15 - INFO - Restarting 'worker:1' (attempt 1/3)
+2026-02-03 18:02:16 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 18:02:16 - INFO - Restarting 'worker:2' (attempt 1/3)
+2026-02-03 18:02:17 - INFO - Program 'ping_monitor:0' successfully started
+2026-02-03 18:02:17 - INFO - Stopped logger:0 gracefully
+2026-02-03 18:02:17 - ERROR - Stopped logger:0 (PID 195664)
+2026-02-03 18:02:18 - WARNING - Program 'logger:0' died before startup (exit code -15)
+2026-02-03 18:02:18 - INFO - Restarting 'logger:0' (attempt 1/3)
+2026-02-03 18:02:19 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 18:02:19 - INFO - Restarting 'worker:0' (attempt 2/3)
+2026-02-03 18:02:19 - INFO - Email alert sent to ['lazrakz36@gmail.com']
+2026-02-03 18:02:20 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 18:02:20 - INFO - Restarting 'worker:1' (attempt 2/3)
+2026-02-03 18:02:20 - INFO - Stopped ping_monitor:0 gracefully
+2026-02-03 18:02:20 - ERROR - Stopped ping_monitor:0 (PID 195675)
+2026-02-03 18:02:21 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 18:02:21 - INFO - Restarting 'worker:2' (attempt 2/3)
+2026-02-03 18:02:22 - INFO - Program 'ping_monitor:0' exited with code -15
+2026-02-03 18:02:22 - INFO - Restarting 'ping_monitor:0' (attempt 1/3)
+2026-02-03 18:02:22 - INFO - Email alert sent to ['lazrakz36@gmail.com']
+2026-02-03 18:03:06 - INFO - Started logger:0 (PID 197142)
+2026-02-03 18:03:06 - INFO - Started worker:0 (PID 197144)
+2026-02-03 18:03:06 - INFO - Started worker:1 (PID 197149)
+2026-02-03 18:03:06 - INFO - Started worker:2 (PID 197151)
+2026-02-03 18:03:06 - INFO - Started ping_monitor:0 (PID 197153)
+2026-02-03 18:03:06 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 18:03:06 - INFO - Restarting 'worker:0' (attempt 1/3)
+2026-02-03 18:03:07 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 18:03:07 - INFO - Restarting 'worker:1' (attempt 1/3)
+2026-02-03 18:03:08 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 18:03:08 - INFO - Restarting 'worker:2' (attempt 1/3)
+2026-02-03 18:03:09 - INFO - Program 'ping_monitor:0' successfully started
+2026-02-03 18:03:10 - INFO - Program 'logger:0' successfully started
+2026-02-03 18:03:10 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 18:03:10 - INFO - Restarting 'worker:0' (attempt 2/3)
+2026-02-03 18:03:11 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 18:03:11 - INFO - Restarting 'worker:1' (attempt 2/3)
+2026-02-03 18:03:12 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 18:03:12 - INFO - Restarting 'worker:2' (attempt 2/3)
+2026-02-03 18:03:14 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 18:03:14 - INFO - Restarting 'worker:0' (attempt 3/3)
+2026-02-03 18:03:15 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 18:03:15 - INFO - Restarting 'worker:1' (attempt 3/3)
+2026-02-03 18:03:16 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 18:03:16 - INFO - Restarting 'worker:2' (attempt 3/3)
+2026-02-03 18:03:18 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 18:03:18 - ERROR - Program 'worker:0' failed after 3 attempts
+2026-02-03 18:03:18 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 18:03:18 - ERROR - Program 'worker:1' failed after 3 attempts
+2026-02-03 18:03:18 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 18:03:18 - ERROR - Program 'worker:2' failed after 3 attempts
+2026-02-03 18:05:26 - INFO - Program 'logger:0' exited with code -15
+2026-02-03 18:05:26 - INFO - Restarting 'logger:0' (attempt 1/3)
+2026-02-03 18:05:26 - INFO - Stopped logger:0 gracefully
+2026-02-03 18:05:26 - ERROR - Stopped logger:0 (PID 197142)
+2026-02-03 18:05:36 - INFO - Started logger:0 (PID 199288)
+2026-02-03 18:05:36 - INFO - Started worker:0 (PID 199290)
+2026-02-03 18:05:36 - INFO - Started worker:1 (PID 199295)
+2026-02-03 18:05:36 - INFO - Started worker:2 (PID 199297)
+2026-02-03 18:05:36 - INFO - Started ping_monitor:0 (PID 199299)
+2026-02-03 18:05:36 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 18:05:36 - INFO - Restarting 'worker:0' (attempt 1/3)
+2026-02-03 18:05:37 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 18:05:37 - INFO - Restarting 'worker:1' (attempt 1/3)
+2026-02-03 18:05:38 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 18:05:38 - INFO - Restarting 'worker:2' (attempt 1/3)
+2026-02-03 18:05:39 - INFO - Program 'ping_monitor:0' successfully started
+2026-02-03 18:05:40 - INFO - Program 'logger:0' successfully started
+2026-02-03 18:05:40 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 18:05:40 - INFO - Restarting 'worker:0' (attempt 2/3)
+2026-02-03 18:05:41 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 18:05:41 - INFO - Restarting 'worker:1' (attempt 2/3)
+2026-02-03 18:05:42 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 18:05:42 - INFO - Restarting 'worker:2' (attempt 2/3)
+2026-02-03 18:05:44 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 18:05:44 - INFO - Restarting 'worker:0' (attempt 3/3)
+2026-02-03 18:05:45 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 18:05:45 - INFO - Restarting 'worker:1' (attempt 3/3)
+2026-02-03 18:05:46 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 18:05:46 - INFO - Restarting 'worker:2' (attempt 3/3)
+2026-02-03 18:05:48 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 18:05:48 - ERROR - Program 'worker:0' failed after 3 attempts
+2026-02-03 18:05:48 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 18:05:48 - ERROR - Program 'worker:1' failed after 3 attempts
+2026-02-03 18:05:48 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 18:05:48 - ERROR - Program 'worker:2' failed after 3 attempts
+2026-02-03 18:06:09 - INFO - Stopped logger:0 gracefully
+2026-02-03 18:08:52 - INFO - Stopped ping_monitor:0 gracefully
+2026-02-03 18:08:55 - INFO - Started logger:0 (PID 202318)
+2026-02-03 18:08:55 - INFO - Started worker:0 (PID 202320)
+2026-02-03 18:08:55 - INFO - Started worker:1 (PID 202325)
+2026-02-03 18:08:55 - INFO - Started worker:2 (PID 202327)
+2026-02-03 18:08:55 - INFO - Started ping_monitor:0 (PID 202329)
+2026-02-03 18:08:55 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 18:08:55 - INFO - Restarting 'worker:0' (attempt 1/3)
+2026-02-03 18:08:56 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 18:08:56 - INFO - Restarting 'worker:1' (attempt 1/3)
+2026-02-03 18:08:57 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 18:08:57 - INFO - Restarting 'worker:2' (attempt 1/3)
+2026-02-03 18:08:58 - INFO - Program 'ping_monitor:0' successfully started
+2026-02-03 18:08:59 - INFO - Program 'logger:0' successfully started
+2026-02-03 18:08:59 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 18:08:59 - INFO - Restarting 'worker:0' (attempt 2/3)
+2026-02-03 18:09:00 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 18:09:00 - INFO - Restarting 'worker:1' (attempt 2/3)
+2026-02-03 18:09:01 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 18:09:01 - INFO - Restarting 'worker:2' (attempt 2/3)
+2026-02-03 18:09:03 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 18:09:03 - INFO - Restarting 'worker:0' (attempt 3/3)
+2026-02-03 18:09:04 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 18:09:04 - INFO - Restarting 'worker:1' (attempt 3/3)
+2026-02-03 18:09:05 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 18:09:05 - INFO - Restarting 'worker:2' (attempt 3/3)
+2026-02-03 18:09:07 - WARNING - Program 'worker:0' died before startup (exit code 127)
+2026-02-03 18:09:07 - ERROR - Program 'worker:0' failed after 3 attempts
+2026-02-03 18:09:07 - WARNING - Program 'worker:1' died before startup (exit code 127)
+2026-02-03 18:09:07 - ERROR - Program 'worker:1' failed after 3 attempts
+2026-02-03 18:09:07 - WARNING - Program 'worker:2' died before startup (exit code 127)
+2026-02-03 18:09:07 - ERROR - Program 'worker:2' failed after 3 attempts
+2026-02-03 18:11:03 - INFO - Stopped logger:0 gracefully
+2026-02-03 18:11:03 - INFO - Stopped ping_monitor:0 gracefully
+2026-02-03 18:11:52 - INFO - Started logger:0 (PID 205308)
+2026-02-03 18:11:52 - INFO - Started worker:0 (PID 205310)
+2026-02-03 18:11:52 - INFO - Started worker:1 (PID 205315)
+2026-02-03 18:11:52 - INFO - Started worker:2 (PID 205320)
+2026-02-03 18:11:52 - INFO - Started ping_monitor:0 (PID 205325)
+2026-02-03 18:11:54 - INFO - Program 'logger:0' successfully started
+2026-02-03 18:11:54 - INFO - Program 'ping_monitor:0' successfully started
+2026-02-03 18:11:55 - INFO - Program 'worker:0' successfully started
+2026-02-03 18:11:55 - INFO - Program 'worker:1' successfully started
+2026-02-03 18:11:55 - INFO - Program 'worker:2' successfully started
+2026-02-03 18:12:01 - INFO - Stopped logger:0 gracefully
+2026-02-03 18:12:06 - INFO - Program 'worker:0' exited with code -9
+2026-02-03 18:12:06 - WARNING - Force killed worker:0
+2026-02-03 18:12:12 - WARNING - Force killed worker:1
+2026-02-03 18:12:12 - INFO - Program 'ping_monitor:0' exited with code -15
+2026-02-03 18:12:12 - INFO - Restarting 'ping_monitor:0' (attempt 1/3)
+2026-02-03 18:12:12 - INFO - Stopped ping_monitor:0 gracefully
+2026-02-03 18:13:03 - INFO - Started logger:0 (PID 207103)
+2026-02-03 18:13:03 - INFO - Started worker:0 (PID 207105)
+2026-02-03 18:13:03 - INFO - Started worker:1 (PID 207111)
+2026-02-03 18:13:03 - INFO - Started worker:2 (PID 207115)
+2026-02-03 18:13:03 - INFO - Started ping_monitor:0 (PID 207121)
+2026-02-03 18:13:05 - INFO - Program 'logger:0' successfully started
+2026-02-03 18:13:05 - INFO - Program 'ping_monitor:0' successfully started
+2026-02-03 18:13:06 - INFO - Program 'worker:0' successfully started
+2026-02-03 18:13:06 - INFO - Program 'worker:1' successfully started
+2026-02-03 18:13:06 - INFO - Program 'worker:2' successfully started
+2026-02-03 18:13:14 - INFO - Program 'logger:0' exited with code -15
+2026-02-03 18:13:14 - INFO - Restarting 'logger:0' (attempt 1/3)
+2026-02-03 18:13:14 - INFO - Stopped logger:0 gracefully
+2026-02-03 18:13:20 - WARNING - Force killed worker:0
+2026-02-03 18:13:20 - INFO - Program 'worker:0' exited with code -9
+2026-02-03 18:13:25 - INFO - Program 'worker:0' exited with code -9
+2026-02-03 18:13:25 - WARNING - Force killed worker:1
+2026-02-03 18:13:25 - INFO - Stopped ping_monitor:0 gracefully
+2026-02-03 18:14:19 - INFO - Started logger:0 (PID 209251)
+2026-02-03 18:14:19 - INFO - Started worker:0 (PID 209253)
+2026-02-03 18:14:19 - INFO - Started worker:1 (PID 209258)
+2026-02-03 18:14:19 - INFO - Started worker:2 (PID 209263)
+2026-02-03 18:14:19 - INFO - Started ping_monitor:0 (PID 209268)
+2026-02-03 18:14:21 - INFO - Program 'logger:0' successfully started
+2026-02-03 18:14:21 - INFO - Program 'ping_monitor:0' successfully started
+2026-02-03 18:14:22 - INFO - Program 'worker:0' successfully started
+2026-02-03 18:14:22 - INFO - Program 'worker:1' successfully started
+2026-02-03 18:14:22 - INFO - Program 'worker:2' successfully started
+2026-02-03 18:14:29 - INFO - Stopped logger:0 gracefully
+2026-02-03 18:14:35 - INFO - Program 'worker:0' exited with code -9
+2026-02-03 18:14:35 - WARNING - Force killed worker:0
+2026-02-03 18:14:40 - WARNING - Force killed worker:1
+2026-02-03 18:14:40 - INFO - Stopped ping_monitor:0 gracefully
+2026-02-03 18:14:54 - INFO - Started logger:0 (PID 210683)
+2026-02-03 18:14:54 - INFO - Started worker:0 (PID 210685)
+2026-02-03 18:14:54 - INFO - Started worker:1 (PID 210690)
+2026-02-03 18:14:54 - INFO - Started worker:2 (PID 210695)
+2026-02-03 18:14:54 - INFO - Started ping_monitor:0 (PID 210699)
+2026-02-03 18:14:56 - INFO - Program 'logger:0' successfully started
+2026-02-03 18:14:56 - INFO - Program 'ping_monitor:0' successfully started
+2026-02-03 18:14:57 - INFO - Program 'worker:0' successfully started
+2026-02-03 18:14:57 - INFO - Program 'worker:1' successfully started
+2026-02-03 18:14:57 - INFO - Program 'worker:2' successfully started
+2026-02-03 18:15:00 - INFO - Started http_server:0 (PID 210887)
+2026-02-03 18:15:01 - WARNING - Program 'http_server:0' died before startup (exit code 1)
+2026-02-03 18:15:01 - INFO - Restarting 'http_server:0' (attempt 1/3)
+2026-02-03 18:15:03 - WARNING - Program 'http_server:0' died before startup (exit code 1)
+2026-02-03 18:15:03 - INFO - Restarting 'http_server:0' (attempt 2/3)
+2026-02-03 18:15:05 - WARNING - Program 'http_server:0' died before startup (exit code 1)
+2026-02-03 18:15:05 - INFO - Restarting 'http_server:0' (attempt 3/3)
+2026-02-03 18:15:07 - WARNING - Program 'http_server:0' died before startup (exit code 1)
+2026-02-03 18:15:07 - ERROR - Program 'http_server:0' failed after 3 attempts
+2026-02-03 18:15:24 - INFO - Stopped logger:0 gracefully
+2026-02-03 18:15:30 - INFO - Program 'worker:0' exited with code -9
+2026-02-03 18:15:30 - WARNING - Force killed worker:0
+2026-02-03 18:15:35 - WARNING - Force killed worker:1
+2026-02-03 18:15:35 - INFO - Stopped ping_monitor:0 gracefully
+2026-02-03 18:21:07 - INFO - Started logger:0 (PID 220551)
+2026-02-03 18:21:07 - INFO - Started worker:0 (PID 220553)
+2026-02-03 18:21:07 - INFO - Started worker:1 (PID 220558)
+2026-02-03 18:21:07 - INFO - Started worker:2 (PID 220563)
+2026-02-03 18:21:07 - INFO - Started ping_monitor:0 (PID 220568)
+2026-02-03 18:21:09 - INFO - Program 'logger:0' successfully started
+2026-02-03 18:21:09 - INFO - Program 'ping_monitor:0' successfully started
+2026-02-03 18:21:10 - INFO - Program 'worker:0' successfully started
+2026-02-03 18:21:10 - INFO - Program 'worker:1' successfully started
+2026-02-03 18:21:10 - INFO - Program 'worker:2' successfully started
+2026-02-03 18:21:36 - INFO - Started http_server:0 (PID 221761)
+2026-02-03 18:21:37 - INFO - Program 'http_server:0' successfully started
+2026-02-03 18:21:44 - INFO - Stopped logger:0 gracefully
+2026-02-03 18:21:50 - WARNING - Force killed worker:0
+2026-02-03 18:21:50 - INFO - Program 'worker:0' exited with code -9
+2026-02-03 18:21:55 - INFO - Program 'worker:0' exited with code -9
+2026-02-03 18:21:55 - WARNING - Force killed worker:1
+2026-02-03 18:21:55 - INFO - Stopped ping_monitor:0 gracefully
+2026-02-03 18:21:55 - INFO - Stopped http_server:0 gracefully
+2026-02-03 18:23:33 - INFO - Started logger:0 (PID 225736)
+2026-02-03 18:23:33 - INFO - Started worker:0 (PID 225738)
+2026-02-03 18:23:33 - INFO - Started worker:1 (PID 225743)
+2026-02-03 18:23:33 - INFO - Started worker:2 (PID 225748)
+2026-02-03 18:23:33 - INFO - Started ping_monitor:0 (PID 225753)
+2026-02-03 18:23:35 - INFO - Program 'logger:0' successfully started
+2026-02-03 18:23:35 - INFO - Program 'ping_monitor:0' successfully started
+2026-02-03 18:23:36 - INFO - Program 'worker:0' successfully started
+2026-02-03 18:23:36 - INFO - Program 'worker:1' successfully started
+2026-02-03 18:23:36 - INFO - Program 'worker:2' successfully started
+2026-02-03 18:23:44 - INFO - Started http_server:0 (PID 226178)
+2026-02-03 18:23:45 - INFO - Program 'http_server:0' successfully started
+2026-02-03 18:24:36 - INFO - Stopped http_server:0 gracefully
+2026-02-03 18:24:59 - INFO - Stopped logger:0 gracefully
+2026-02-03 18:25:07 - WARNING - Force killed worker:0
+2026-02-03 18:25:07 - INFO - Program 'worker:0' exited with code -9
+2026-02-03 18:25:12 - INFO - Program 'worker:0' exited with code -9
+2026-02-03 18:25:13 - WARNING - Force killed worker:1
+2026-02-03 18:25:13 - INFO - Stopped ping_monitor:0 gracefully
+2026-02-03 18:25:15 - INFO - Started logger:0 (PID 229764)
+2026-02-03 18:25:15 - INFO - Started worker:0 (PID 229766)
+2026-02-03 18:25:15 - INFO - Started worker:1 (PID 229771)
+2026-02-03 18:25:15 - INFO - Started worker:2 (PID 229776)
+2026-02-03 18:25:15 - INFO - Started ping_monitor:0 (PID 229781)
+2026-02-03 18:25:17 - INFO - Program 'logger:0' successfully started
+2026-02-03 18:25:17 - INFO - Program 'ping_monitor:0' successfully started
+2026-02-03 18:25:18 - INFO - Program 'worker:0' successfully started
+2026-02-03 18:25:18 - INFO - Program 'worker:1' successfully started
+2026-02-03 18:25:18 - INFO - Program 'worker:2' successfully started
+2026-02-03 18:25:30 - INFO - Started http_server:0 (PID 230542)
+2026-02-03 18:25:31 - INFO - Program 'http_server:0' successfully started
+2026-02-03 18:25:32 - INFO - Stopped logger:0 gracefully
+2026-02-03 18:25:38 - WARNING - Force killed worker:0
+2026-02-03 18:25:38 - INFO - Program 'worker:0' exited with code -9
+2026-02-03 18:25:43 - INFO - Program 'worker:0' exited with code -9
+2026-02-03 18:25:43 - WARNING - Force killed worker:1
+2026-02-03 18:25:43 - INFO - Stopped ping_monitor:0 gracefully
+2026-02-03 18:25:43 - INFO - Stopped http_server:0 gracefully
+2026-02-03 18:27:56 - INFO - Started logger:0 (PID 235906)
+2026-02-03 18:27:56 - INFO - Started worker:0 (PID 235908)
+2026-02-03 18:27:56 - INFO - Started worker:1 (PID 235912)
+2026-02-03 18:27:56 - INFO - Started worker:2 (PID 235916)
+2026-02-03 18:27:56 - INFO - Started ping_monitor:0 (PID 235920)
+2026-02-03 18:27:58 - INFO - Program 'logger:0' successfully started
+2026-02-03 18:27:58 - INFO - Program 'ping_monitor:0' successfully started
+2026-02-03 18:27:59 - INFO - Program 'worker:0' successfully started
+2026-02-03 18:27:59 - INFO - Program 'worker:1' successfully started
+2026-02-03 18:27:59 - INFO - Program 'worker:2' successfully started
+2026-02-03 18:28:02 - INFO - Started http_server:0 (PID 236169)
+2026-02-03 18:28:04 - INFO - Program 'http_server:0' successfully started
+2026-02-03 18:28:11 - INFO - Stopped logger:0 gracefully
+2026-02-03 18:28:17 - WARNING - Force killed worker:0
+2026-02-03 18:28:17 - INFO - Program 'worker:0' exited with code -9
+2026-02-03 18:28:22 - INFO - Program 'worker:0' exited with code -9
+2026-02-03 18:28:22 - WARNING - Force killed worker:1
+2026-02-03 18:28:22 - INFO - Stopped ping_monitor:0 gracefully
+2026-02-03 18:28:23 - INFO - Stopped http_server:0 gracefully
+2026-02-03 18:30:20 - INFO - Started logger:0 (PID 241685)
+2026-02-03 18:30:20 - INFO - Started worker:0 (PID 241687)
+2026-02-03 18:30:20 - INFO - Started worker:1 (PID 241691)
+2026-02-03 18:30:20 - INFO - Started worker:2 (PID 241695)
+2026-02-03 18:30:20 - INFO - Started ping_monitor:0 (PID 241699)
+2026-02-03 18:30:22 - INFO - Program 'logger:0' successfully started
+2026-02-03 18:30:22 - INFO - Program 'ping_monitor:0' successfully started
+2026-02-03 18:30:23 - INFO - Program 'worker:0' successfully started
+2026-02-03 18:30:23 - INFO - Program 'worker:1' successfully started
+2026-02-03 18:30:23 - INFO - Program 'worker:2' successfully started
+2026-02-03 18:30:30 - INFO - Stopped logger:0 gracefully
+2026-02-03 18:30:36 - INFO - Program 'worker:0' exited with code -9
+2026-02-03 18:30:36 - WARNING - Force killed worker:0
+2026-02-03 18:30:41 - WARNING - Force killed worker:1
+2026-02-03 18:30:41 - INFO - Stopped ping_monitor:0 gracefully
