@@ -1,3 +1,6 @@
 logs/*
 .env
-vv
+__pycache__/
+*.pyc
+.vscode/
+taskmaster.log
