@@ -5,3 +5,5 @@ __pycache__/
 .vscode/
 taskmaster.log
 vv
+main.cpp
+a.out

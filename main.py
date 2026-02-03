@@ -8,25 +8,10 @@ import threading
 import time
 import signal
 from threading import Lock
+from logger import get_logger
+from web_dashboard import WebDashboard
+from config_validator import ConfigValidator
 
-# Import bonus features (optional)
-try:
-    from logger import get_logger
-    LOGGER_AVAILABLE = True
-except ImportError:
-    LOGGER_AVAILABLE = False
-
-try:
-    from web_dashboard import WebDashboard
-    DASHBOARD_AVAILABLE = True
-except ImportError:
-    DASHBOARD_AVAILABLE = False
-
-try:
-    from config_validator import ConfigValidator
-    VALIDATOR_AVAILABLE = True
-except ImportError:
-    VALIDATOR_AVAILABLE = False
 
 
 class ProcessInfo:
@@ -75,7 +60,6 @@ class ProcessMonitor(threading.Thread):
                         elapsed = time.time() - proc_info.start_time
                         if elapsed >= starttime and proc_info.process.poll() is None:
                             proc_info.successfully_started = True
-                            # Only log to file, not terminal
                             if self.job_manager.logger:
                                 self.job_manager.logger.info(f"Program '{name}:{i}' successfully started")
                     
@@ -83,7 +67,6 @@ class ProcessMonitor(threading.Thread):
                     if proc_info.process.poll() is not None:
                         returncode = proc_info.process.returncode
                         
-                        # Check if it died before being successfully started
                         if not proc_info.successfully_started:
                             if self.job_manager.logger:
                                 self.job_manager.logger.warning(f"Program '{name}:{i}' died before startup (exit code {returncode})")
@@ -173,17 +156,13 @@ class ShellCommand(cmd.Cmd):
 
     def do_validate(self, arg):
         """Validate current configuration"""
-        if VALIDATOR_AVAILABLE:
-            ConfigValidator.print_validation_report(self.manager.config)
-        else:
-            print("Config validator not available")
+        ConfigValidator.print_validation_report(self.manager.config)
     
     def do_summary(self, arg):
         """Show configuration summary"""
-        if VALIDATOR_AVAILABLE:
-            ConfigValidator.print_config_summary(self.manager.config)
-        else:
-            print(f"Total programs: {len(self.manager.config)}")
+        ConfigValidator.print_config_summary(self.manager.config)
+
+
 
     def do_exit(self, arg):
         """Exit taskmaster"""
@@ -220,14 +199,11 @@ class JobManager:
         self.config_path = config_path
         self.jobs = {}
         
-        # Initialize logger
-        self.logger = get_logger() if LOGGER_AVAILABLE else None
+        self.logger = get_logger()
         
-        # Start web dashboard
-        self.dashboard = None
-        if DASHBOARD_AVAILABLE:
-            self.dashboard = WebDashboard(self, port=8080)
-            self.dashboard.start()
+
+        self.dashboard = WebDashboard(self, port=8080)
+        self.dashboard.start()
         
         self.auto_start_jobs()
     
@@ -554,14 +530,13 @@ def main():
     file_path = sys.argv[1]
     config = load_config(file_path)
     
-    # Validate if available
-    if VALIDATOR_AVAILABLE:
-        print("\nValidating configuration...")
-        if not ConfigValidator.print_validation_report(config):
-            response = input("\nContinue anyway? (y/n): ").strip().lower()
-            if response != 'y':
-                sys.exit(1)
-        ConfigValidator.print_config_summary(config)
+
+    print("\nValidating configuration...")
+    if not ConfigValidator.print_validation_report(config):
+        response = input("\nContinue anyway? (y/n): ").strip().lower()
+        if response != 'y':
+            sys.exit(1)
+    ConfigValidator.print_config_summary(config)
     
     manager = None
     monitor = None
@@ -588,8 +563,7 @@ def main():
         monitor.start()
         
         print("\nTaskmaster running")
-        if DASHBOARD_AVAILABLE:
-            print("Dashboard: http://localhost:8080")
+        print("Dashboard: http://localhost:8080")
         print()
         
         ShellCommand(manager).cmdloop()
