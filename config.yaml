@@ -1,119 +1,90 @@
 programs:
-  # A simple long-running script that logs timestamps
+  # Logger program - bash script
   logger:
-    cmd: "/bin/bash /home/yel/1337/task-master/scripts/logger.sh"
+    cmd: "/bin/bash /home/kamui/Desktop/taskmaster/scripts/logger.sh"
     numprocs: 1
     umask: 022
-    workingdir: /home/yel/1337/task-master
+    workingdir: /home/kamui/Desktop/taskmaster
     autostart: true
     autorestart: always
-    exitcodes:
-      - 0
+    exitcodes: [0]
     startretries: 3
     starttime: 2
     stopsignal: TERM
     stoptime: 5
-    stdout: /home/yel/1337/task-master/logs/logger.stdout
-    stderr: /home/yel/1337/task-master/logs/logger.stderr
+    stdout: /home/kamui/Desktop/taskmaster/logs/logger.stdout
+    stderr: /home/kamui/Desktop/taskmaster/logs/logger.stderr
     env:
-      STARTED_BY: taskmaster
-      LOG_INTERVAL: 5
+      STARTED_BY: kamui
+      LOG_INTERVAL: "5"
 
-  # A simple HTTP server using Python
-  webserver:
-    cmd: "/usr/bin/python3 -m http.server 8080"
-    numprocs: 1
+  # Worker - Python with proper output (FIXED)
+  worker:
+    cmd: "/bifsn/ bash /home/kamui/Desktop/taskmaster/scripts/worker.sh"
+    numprocs: 3
     umask: 022
-    workingdir: /home/yel/1337/task-master
-    autostart: false
-    autorestart: unexpected
-    exitcodes:
-      - 0
+    workingdir: /home/kamui/Desktop/taskmaster
+    autostart: true
+    autorestart: never
+    exitcodes: [0,2,3,4,1]
     startretries: 3
     starttime: 3
-    stopsignal: TERM
-    stoptime: 10
-    stdout: /home/yel/1337/task-master/logs/webserver.stdout
-    stderr: /home/yel/1337/task-master/logs/webserver.stderr
+    stopsignal: INT
+    stoptime: 5
+    stdout: /home/kamui/Desktop/taskmaster/logs/worker.stdout
+    stderr: /home/kamui/Desktop/taskmaster/logs/worker.stderr
     env:
-      STARTED_BY: taskmaster
+      WORKER_ID: "1"
+      ENVIRONMENT: "production"
 
-  # A worker script that processes tasks
-  worker:
-    cmd: "/bin/bash /home/yel/1337/task-master/scripts/worker.sh"
-    numprocs: 2
+  # Ping monitor - advanced network checker
+  ping_monitor:
+    cmd: "/bin/bash /home/kamui/Desktop/taskmaster/scripts/ping_monitor.sh"
+    numprocs: 1
     umask: 022
-    workingdir: /home/yel/1337/task-master
+    workingdir: /home/kamui/Desktop/taskmaster
     autostart: true
     autorestart: always
-    exitcodes:
-      - 0
-      - 1
-    startretries: 5
+    startretries: 3
     starttime: 2
-    stopsignal: TERM
-    stoptime: 5
-    stdout: /home/yel/1337/task-master/logs/worker.stdout
-    stderr: /home/yel/1337/task-master/logs/worker.stderr
-    env:
-      STARTED_BY: taskmaster
-      WORKER_ID: 1
-
-  # A simple ping monitor
-  pingmonitor:
-    cmd: "/bin/bash /home/yel/1337/task-master/scripts/ping_monitor.sh"
-    numprocs: 1
-    umask: 022
-    workingdir: /home/yel/1337/task-master
-    autostart: false
-    autorestart: unexpected
-    exitcodes:
-      - 0
-    startretries: 2
-    starttime: 2
-    stopsignal: TERM
-    stoptime: 5
-    stdout: /home/yel/1337/task-master/logs/pingmonitor.stdout
-    stderr: /home/yel/1337/task-master/logs/pingmonitor.stderr
+    stdout: /home/kamui/Desktop/taskmaster/logs/ping_monitor.stdout
+    stderr: /home/kamui/Desktop/taskmaster/logs/ping_monitor.stderr
     env:
       PING_TARGET: "8.8.8.8"
-      PING_INTERVAL: 10
+      PING_INTERVAL: "10"
 
-  # A simple counter script (quick task)
+  # Counter - useful one-shot or scheduled runs
   counter:
-    cmd: "/bin/bash /home/yel/1337/task-master/scripts/counter.sh"
+    cmd: "/bin/bash /home/kamui/Desktop/taskmaster/scripts/counter.sh"
     numprocs: 1
     umask: 022
-    workingdir: /home/yel/1337/task-master
+    workingdir: /home/kamui/Desktop/taskmaster
     autostart: false
-    autorestart: always
-    exitcodes:
-      - 0
-    startretries: 1
-    starttime: 1
-    stopsignal: TERM
-    stoptime: 3
-    stdout: /home/yel/1337/task-master/logs/counter.stdout
-    stderr: /home/yel/1337/task-master/logs/counter.stderr
+    autorestart: never
+    exitcodes: [0]
+    stdout: /home/kamui/Desktop/taskmaster/logs/counter.stdout
+    stderr: /home/kamui/Desktop/taskmaster/logs/counter.stderr
     env:
-      COUNT_TO: 10
-  
+      COUNT_TO: "100"
 
-  # Sleep daemon - a simple long-running process
-  sleeper:
-    cmd: "/bin/sleep 3600"
+  # Simple HTTP server for quick testing
+  http_server:
+    cmd: "python3 -u -m http.server 9000"
     numprocs: 1
     umask: 022
-    workingdir: /tmp
+    workingdir: /home/kamui/Desktop/taskmaster
     autostart: false
     autorestart: always
-    exitcodes:
-      - 0
+    stdout: /home/kamui/Desktop/taskmaster/logs/http_server.stdout
+    stderr: /home/kamui/Desktop/taskmaster/logs/http_server.stderr
+  
+  test_exit:
+    cmd: "/bin/bash /home/kamui/Desktop/taskmaster/scripts/test_exit.sh"
+    numprocs: 1
+    autostart: false
+    autorestart: unexpected
+    exitcodes: [0,2]
     startretries: 3
     starttime: 1
-    stopsignal: TERM
-    stoptime: 5
-    stdout: /home/yel/1337/task-master/logs/sleeper.stdout
-    stderr: /home/yel/1337/task-master/logs/sleeper.stderr
-    env:
-      STARTED_BY: taskmaster
+    stdout: /home/kamui/Desktop/taskmaster/logs/test_exit.stdout
+    stderr: /home/kamui/Desktop/taskmaster/logs/test_exit.stderr

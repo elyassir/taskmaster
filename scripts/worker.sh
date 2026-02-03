@@ -10,7 +10,6 @@ while true; do
     task_count=$((task_count + 1))
     echo "[$(date '+%Y-%m-%d %H:%M:%S')] Worker $WORKER_ID - Processing task #$task_count"
     
-    # Simulate work (random sleep between 2-5 seconds)
     sleep_time=$((RANDOM % 4 + 2))
     sleep $sleep_time
     

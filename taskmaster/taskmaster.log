@@ -26,3 +26,39 @@
 2026-02-01 18:38:21,588 - INFO - Started process worker:1 with PID 7199
 2026-02-01 18:38:21,591 - INFO - Started process worker:2 with PID 7201
 2026-02-01 18:38:21,591 - INFO - Configuration reloaded successfully
+2026-02-03 13:18:05,641 - INFO - Starting Taskmaster
+2026-02-03 13:18:05,648 - ERROR - Failed to start tail_logs: Exception occurred in preexec_fn.
+2026-02-03 13:18:05,650 - INFO - Started process worker:0 with PID 28513
+2026-02-03 13:18:05,652 - INFO - Started process worker:1 with PID 28515
+2026-02-03 13:18:05,655 - INFO - Started process worker:2 with PID 28517
+2026-02-03 13:19:01,925 - INFO - Received shutdown signal
+2026-02-03 13:19:01,929 - INFO - Process worker:0 (PID 28513) killed by signal 2
+2026-02-03 13:19:01,929 - INFO - Process worker:1 (PID 28515) killed by signal 2
+2026-02-03 13:19:01,930 - INFO - Process worker:2 (PID 28517) killed by signal 2
+2026-02-03 13:19:03,089 - INFO - Received shutdown signal
+2026-02-03 13:19:04,019 - INFO - Received shutdown signal
+2026-02-03 13:19:04,732 - INFO - Received shutdown signal
+2026-02-03 13:19:05,287 - INFO - Received shutdown signal
+2026-02-03 13:19:05,756 - INFO - Received shutdown signal
+2026-02-03 13:19:06,180 - INFO - Received shutdown signal
+2026-02-03 13:19:06,604 - INFO - Received shutdown signal
+2026-02-03 13:19:07,016 - INFO - Received shutdown signal
+2026-02-03 13:19:07,449 - INFO - Received shutdown signal
+2026-02-03 13:19:07,901 - INFO - Received shutdown signal
+2026-02-03 13:19:17,433 - INFO - Starting Taskmaster
+2026-02-03 13:19:17,439 - ERROR - Failed to start tail_logs: Exception occurred in preexec_fn.
+2026-02-03 13:19:17,441 - INFO - Started process worker:0 with PID 28700
+2026-02-03 13:19:17,443 - INFO - Started process worker:1 with PID 28702
+2026-02-03 13:19:17,445 - INFO - Started process worker:2 with PID 28704
+2026-02-03 13:19:21,893 - INFO - Starting Taskmaster
+2026-02-03 13:19:21,898 - ERROR - Failed to start tail_logs: Exception occurred in preexec_fn.
+2026-02-03 13:19:21,900 - INFO - Started process worker:0 with PID 28776
+2026-02-03 13:19:21,902 - INFO - Started process worker:1 with PID 28778
+2026-02-03 13:19:21,904 - INFO - Started process worker:2 with PID 28780
+2026-02-03 13:19:22,567 - INFO - Received shutdown signal
+2026-02-03 13:19:22,570 - INFO - Process worker:0 (PID 28776) killed by signal 2
+2026-02-03 13:19:22,570 - INFO - Process worker:1 (PID 28778) killed by signal 2
+2026-02-03 13:19:22,570 - INFO - Process worker:2 (PID 28780) killed by signal 2
+2026-02-03 13:19:23,864 - INFO - Received shutdown signal
+2026-02-03 13:19:26,522 - INFO - Received shutdown signal
+2026-02-03 13:19:27,045 - INFO - Received shutdown signal
