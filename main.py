@@ -208,7 +208,6 @@ class JobManager:
         self.auto_start_jobs()
     
     def log(self, message, level='info'):
-        """Log message - only to file, never to console"""
         if self.logger:
             if level == 'error':
                 self.logger.error(message)
@@ -223,7 +222,7 @@ class JobManager:
                     timestamp = time.strftime('%Y-%m-%d %H:%M:%S')
                     f.write(f"{timestamp} - {level.upper()} - {message}\n")
             except:
-                pass  # Silently fail if can't write
+                pass  # silently fail if can't write
     
     def _cleanup_on_exit(self):
         """Cleanup function called on program exit"""
@@ -401,24 +400,25 @@ class JobManager:
 
     def stop_job(self, name, silent=False):
         """Stop a program"""
-        proc_infos = self.jobs.get(name)
+        with self.lock:
+            proc_infos = self.jobs.pop(name, None)
         if not proc_infos:
             if not silent:
                 print(f"Program '{name}' not running")
             return
-        
+
         program_cfg = self.config.get(name, {})
         stopsignal = program_cfg.get('stopsignal', 'TERM')
         stoptime = program_cfg.get('stoptime', 10)
-        
+
         sig = getattr(signal, f'SIG{stopsignal}', signal.SIGTERM)
-        
+
         for i, proc_info in enumerate(proc_infos):
             if proc_info.process.poll() is None:
                 try:
                     print(f"Stopping {name}:{i} (PID {proc_info.process.pid}) with SIG{stopsignal}")
                     os.kill(proc_info.process.pid, sig)
-                    
+
                     # Wait for graceful shutdown
                     start = time.time()
                     while time.time() - start < stoptime:
@@ -429,7 +429,7 @@ class JobManager:
                                 self.logger.info(f"Stopped {name}:{i} gracefully")
                             break
                         time.sleep(0.1)
-                    
+
                     # Force kill if needed
                     if proc_info.process.poll() is None:
                         print(f"{name}:{i} did not stop, force killing")
@@ -438,11 +438,9 @@ class JobManager:
                         # Log to file only
                         if self.logger:
                             self.logger.warning(f"Force killed {name}:{i}")
-                
+
                 except ProcessLookupError:
                     pass
-        
-        del self.jobs[name]
 
     def restart_job(self, name):
         """Restart a program"""
@@ -469,24 +467,20 @@ class JobManager:
             old_programs = set(self.config.keys())
             new_programs = set(new_config.keys())
             
-            # Remove deleted programs
             for name in old_programs - new_programs:
                 print(f"Removing: {name}")
                 self.stop_job(name, silent=True)
             
-            # Add new programs
             for name in new_programs - old_programs:
                 print(f"Adding: {name}")
                 self.config[name] = new_config[name]
                 if new_config[name].get('autostart', False):
                     self.start_job(name)
             
-            # Check existing programs for changes
             for name in old_programs & new_programs:
                 old_cfg = self.config[name]
                 new_cfg = new_config[name]
                 
-                # Fields that require restart
                 critical_fields = ['cmd', 'numprocs', 'umask', 'workingdir', 
                                  'env', 'stdout', 'stderr']
                 
@@ -512,7 +506,6 @@ class JobManager:
                     print(f"'{name}': No changes")
             
             print("\nReload complete!")
-            # Log to file only
             if self.logger:
                 self.logger.info("Configuration reloaded")
             
@@ -553,7 +546,6 @@ def main():
         print("Taskmaster stopped")
         sys.exit(0)
     
-    # Register signal handlers for proper cleanup
     signal.signal(signal.SIGTERM, cleanup_handler)
     signal.signal(signal.SIGINT, cleanup_handler)
     
@@ -575,7 +567,6 @@ def main():
         import traceback
         traceback.print_exc()
     finally:
-        # Always cleanup on exit
         if manager:
             print("Stopping all programs...")
             manager.stop_all_jobs()

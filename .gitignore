@@ -7,3 +7,5 @@ taskmaster.log
 vv
 main.cpp
 a.out
+__pycache__
+supervisord.conf

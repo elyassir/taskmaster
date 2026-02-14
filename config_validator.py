@@ -1,8 +1,3 @@
-"""
-Configuration validator for Taskmaster
-Validates YAML configuration and provides helpful error messages
-"""
-
 import os
 import signal
 
@@ -159,11 +154,11 @@ class ConfigValidator:
         is_valid, errors = cls.validate(config)
         
         if is_valid:
-            print("✓ Configuration is valid!")
-            print(f"✓ Found {len(config)} program(s)")
+            print("Configuration is valid!")
+            print(f"Found {len(config)} program(s)")
             return True
         else:
-            print("✗ Configuration validation failed:")
+            print("Configuration validation failed:")
             print()
             for error in errors:
                 print(f"  • {error}")

@@ -18,12 +18,10 @@ class TaskmasterLogger:
         self.logger = logging.getLogger('taskmaster')
         self.logger.setLevel(logging.INFO)
         
-        # Prevent duplicate handlers
         if self.logger.handlers:
             self.logger.handlers.clear()
         
         # File handler with rotation (10MB max, keep 5 backups)
-        print("zzz")
         file_handler = logging.handlers.RotatingFileHandler(
             log_file,
             maxBytes=10*1024*1024,
@@ -37,9 +35,6 @@ class TaskmasterLogger:
         file_handler.setFormatter(file_formatter)
         self.logger.addHandler(file_handler)
         
-        # NO CONSOLE HANDLER - keep terminal clean!
-        
-        # Email configuration
 
         self.email_config = email_config
         
@@ -105,7 +100,6 @@ Message: {message}
             
         except Exception as e:
             self.logger.error(f"Failed to send email alert: {e}")
-            print("(LWLALA) - Failed to send email alert")
 
     def log_process_event(self, program_name, event_type, details=''):
         """Log process-related events"""
