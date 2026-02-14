@@ -13,7 +13,6 @@ from web_dashboard import WebDashboard
 from config_validator import ConfigValidator
 
 
-
 class ProcessInfo:
     """Wrapper to store process and metadata"""
     def __init__(self, process, start_time, retry_count=0):
@@ -332,24 +331,34 @@ class JobManager:
                 print(f"{instance_name:<15} {'EXITED':<12} {'-':<8} {'-':<10} {proc_info.retry_count:<8}")
 
     def status_all_jobs(self):
-        """Show status of all programs"""
-        if not self.jobs:
-            print("\nNo programs running")
+        """Show status of all programs from config"""
+        if not self.config:
+            print("\nNo programs configured")
             return
         
         print(f"\n{'Program':<20} {'State':<12} {'PID':<8} {'Uptime':<10} {'Retries':<8}")
         print("-" * 70)
         
-        for name, proc_infos in self.jobs.items():
-            for i, proc_info in enumerate(proc_infos):
-                instance_name = f"{name}:{i}" if len(proc_infos) > 1 else name
-                uptime = int(time.time() - proc_info.start_time) if proc_info.process.poll() is None else 0
-                status = "RUNNING" if proc_info.successfully_started else "STARTING"
-                
-                if proc_info.process.poll() is None:
-                    print(f"{instance_name:<20} {status:<12} {proc_info.process.pid:<8} {uptime}s{'':<6} {proc_info.retry_count:<8}")
-                else:
-                    print(f"{instance_name:<20} {'EXITED':<12} {'-':<8} {'-':<10} {proc_info.retry_count:<8}")
+        for name, program_cfg in self.config.items():
+            numprocs = program_cfg.get('numprocs', 1)
+            proc_infos = self.jobs.get(name, [])
+            
+            if proc_infos:
+                # Show running/started processes
+                for i, proc_info in enumerate(proc_infos):
+                    instance_name = f"{name}:{i}" if numprocs > 1 else name
+                    uptime = int(time.time() - proc_info.start_time) if proc_info.process.poll() is None else 0
+                    status = "RUNNING" if proc_info.successfully_started else "STARTING"
+                    
+                    if proc_info.process.poll() is None:
+                        print(f"{instance_name:<20} {status:<12} {proc_info.process.pid:<8} {uptime}s{'':<6} {proc_info.retry_count:<8}")
+                    else:
+                        print(f"{instance_name:<20} {'EXITED':<12} {'-':<8} {'-':<10} {proc_info.retry_count:<8}")
+            else:
+                # Show stopped/not started processes
+                for i in range(numprocs):
+                    instance_name = f"{name}:{i}" if numprocs > 1 else name
+                    print(f"{instance_name:<20} {'STOPPED':<12} {'-':<8} {'-':<10} {'-':<8}")
         print()
 
     def _start_single_process(self, name, program_cfg):
