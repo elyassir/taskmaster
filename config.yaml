@@ -3,7 +3,7 @@ programs:
   logger:
     cmd: "/bin/bash /home/kamui/Desktop/taskmaster/scripts/logger.sh"
     numprocs: 1
-    umask: 022
+    umask: 026
     workingdir: /home/kamui/Desktop/taskmaster
     autostart: true
     autorestart: always
@@ -96,7 +96,7 @@ programs:
   test_exit:
     cmd: "/bin/bash /home/kamui/Desktop/taskmaster/scripts/test_exit.sh"
     numprocs: 1
-    umask: 022
+    umask: 026
     workingdir: /home/kamui/Desktop/taskmaster
     autostart: false
     autorestart: unexpected
