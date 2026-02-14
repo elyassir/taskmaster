@@ -502,7 +502,6 @@ class JobManager:
                             # Log to file only
                             if self.logger:
                                 self.logger.info(f"Stopped {name}:{i} gracefully")
-                            self.log_process_event(f"{name}:{i}", 'STOPPED', 'stopped gracefully')
                             break
                         time.sleep(0.1)
 
