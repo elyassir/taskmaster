@@ -23,6 +23,55 @@ class ProcessInfo:
         self.successfully_started = False
 
 
+def load_env_file(env_path):
+    """Load key=value pairs from a .env file into os.environ if not already set."""
+    if not env_path.exists():
+        return
+    try:
+        for line in env_path.read_text().splitlines():
+            line = line.strip()
+            if not line or line.startswith('#') or '=' not in line:
+                continue
+            key, value = line.split('=', 1)
+            key = key.strip()
+            value = value.strip().strip('"').strip("'")
+            if key and key not in os.environ:
+                os.environ[key] = value
+    except Exception:
+        pass
+
+
+def build_email_config():
+    """Build email configuration from environment variables."""
+    smtp_server = os.getenv('EMAIL_SMTP_SERVER')
+    smtp_port = os.getenv('EMAIL_SMTP_PORT')
+    username = os.getenv('EMAIL_USERNAME')
+    password = os.getenv('EMAIL_PASSWORD')
+    from_addr = os.getenv('EMAIL_FROM')
+    to_addrs = os.getenv('EMAIL_TO')
+
+    if not all([smtp_server, smtp_port, username, password, from_addr, to_addrs]):
+        return None
+
+    to_list = [addr.strip() for addr in to_addrs.split(',') if addr.strip()]
+    if not to_list:
+        return None
+
+    try:
+        smtp_port = int(smtp_port)
+    except ValueError:
+        smtp_port = 587
+
+    return {
+        'smtp_server': smtp_server,
+        'smtp_port': smtp_port,
+        'username': username,
+        'password': password,
+        'from_addr': from_addr,
+        'to_addrs': to_list
+    }
+
+
 class ProcessMonitor(threading.Thread):
     """Thread that monitors the status of all jobs"""
     def __init__(self, job_manager, interval=1):
@@ -62,6 +111,7 @@ class ProcessMonitor(threading.Thread):
                             proc_info.successfully_started = True
                             if self.job_manager.logger:
                                 self.job_manager.logger.info(f"Program '{name}:{i}' successfully started")
+                            self.job_manager.log_process_event(f"{name}:{i}", 'STARTED', 'startup grace period passed')
                     
                     # Check if process exited
                     if proc_info.process.poll() is not None:
@@ -70,10 +120,12 @@ class ProcessMonitor(threading.Thread):
                         if not proc_info.successfully_started:
                             if self.job_manager.logger:
                                 self.job_manager.logger.warning(f"Program '{name}:{i}' died before startup (exit code {returncode})")
+                            self.job_manager.log_process_event(f"{name}:{i}", 'FATAL', f"died before startup (exit code {returncode})")
                             should_retry = True
                         else:
                             if self.job_manager.logger:
                                 self.job_manager.logger.info(f"Program '{name}:{i}' exited with code {returncode}")
+                            self.job_manager.log_process_event(f"{name}:{i}", 'STOPPED', f"exit code {returncode}")
                             
                             # Determine if should restart based on autorestart policy
                             should_retry = False
@@ -83,6 +135,7 @@ class ProcessMonitor(threading.Thread):
                                 if returncode not in exitcodes:
                                     if self.job_manager.logger:
                                         self.job_manager.logger.warning(f"Exit code {returncode} unexpected (expected: {exitcodes})")
+                                    self.job_manager.log_process_event(f"{name}:{i}", 'CRASH', f"unexpected exit code {returncode}")
                                     should_retry = True
                         
                         # Handle restart logic
@@ -91,6 +144,7 @@ class ProcessMonitor(threading.Thread):
                                 proc_info.retry_count += 1
                                 if self.job_manager.logger:
                                     self.job_manager.logger.info(f"Restarting '{name}:{i}' (attempt {proc_info.retry_count}/{startretries})")
+                                self.job_manager.log_process_event(f"{name}:{i}", 'RESTARTED', f"attempt {proc_info.retry_count}/{startretries}")
                                 time.sleep(1)
                                 
                                 # Start new process
@@ -101,6 +155,7 @@ class ProcessMonitor(threading.Thread):
                             else:
                                 if self.job_manager.logger:
                                     self.job_manager.logger.error(f"Program '{name}:{i}' failed after {startretries} attempts")
+                                self.job_manager.log_process_event(f"{name}:{i}", 'MAX_RETRIES', f"failed after {startretries} attempts")
                                 proc_infos.remove(proc_info)
                         else:
                             proc_infos.remove(proc_info)
@@ -199,7 +254,9 @@ class JobManager:
         self.config_path = config_path
         self.jobs = {}
         
-        self.logger = get_logger()
+        load_env_file(Path(__file__).resolve().parent / '.env')
+        email_config = build_email_config()
+        self.logger = get_logger(email_config=email_config)
         
 
         self.dashboard = WebDashboard(self, port=8080)
@@ -223,6 +280,23 @@ class JobManager:
                     f.write(f"{timestamp} - {level.upper()} - {message}\n")
             except:
                 pass  # silently fail if can't write
+
+    def log_process_event(self, program_name, event_type, details=''):
+        """Log process lifecycle events using the enhanced logger when available."""
+        if self.logger and hasattr(self.logger, 'log_process_event'):
+            self.logger.log_process_event(program_name, event_type, details)
+            return
+
+        # Fallback to basic logging if enhanced logger isn't available
+        message = f"Program '{program_name}' - {event_type}"
+        if details:
+            message += f" - {details}"
+        if event_type in ['FATAL', 'CRASH', 'MAX_RETRIES']:
+            self.log(message, level='error')
+        elif event_type in ['STARTED', 'RESTARTED']:
+            self.log(message, level='info')
+        else:
+            self.log(message, level='warning')
     
     def _cleanup_on_exit(self):
         """Cleanup function called on program exit"""
@@ -394,6 +468,7 @@ class JobManager:
                     self.logger.info(f"Started {name}:{i} (PID {proc_info.process.pid})")
                 else:
                     self.log(f"Started {name}:{i} (PID {proc_info.process.pid})")
+                self.log_process_event(f"{name}:{i}", 'STARTED', f"pid {proc_info.process.pid}")
         
         if proc_infos:
             self.jobs[name] = proc_infos
@@ -427,6 +502,7 @@ class JobManager:
                             # Log to file only
                             if self.logger:
                                 self.logger.info(f"Stopped {name}:{i} gracefully")
+                            self.log_process_event(f"{name}:{i}", 'STOPPED', 'stopped gracefully')
                             break
                         time.sleep(0.1)
 
@@ -438,6 +514,7 @@ class JobManager:
                         # Log to file only
                         if self.logger:
                             self.logger.warning(f"Force killed {name}:{i}")
+                        self.log_process_event(f"{name}:{i}", 'CRASH', 'force killed after timeout')
 
                 except ProcessLookupError:
                     pass

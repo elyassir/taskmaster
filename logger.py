@@ -60,8 +60,9 @@ class TaskmasterLogger:
     
     def _send_email_alert(self, message, level):
         """Send email alert for critical events"""
-
+        self.logger.info(f"Send email alert for critical events:)")
         if not self.email_config:
+            print("Email configuration not provided, cannot send alert")
             return
         try:
             
@@ -111,7 +112,6 @@ Message: {message}
         if event_type in ['FATAL', 'CRASH', 'MAX_RETRIES']:
             self.error(message, send_email=True)
         elif event_type == 'STOPPED':
-            # Treat STOPPED as noteworthy and send an email alert
             self.error(message, send_email=True)
         elif event_type in ['STARTED', 'RESTARTED']:
             self.info(message)
