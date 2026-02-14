@@ -1,4 +1,5 @@
 #!/bin/bash
 echo "Test exit"
-sleep 6
-exit 0
+touch xx
+sleep 6000
+exit 5

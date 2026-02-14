@@ -1,10 +1,10 @@
 programs:
   # Logger program - bash script
   logger:
-    cmd: "/bin/bash /goinfre/yel-mass/taskmaster/scripts/logger.sh"
+    cmd: "/bin/bash /home/zlazrak/taskmaster/scripts/logger.sh"
     numprocs: 1
-    umask: 022
-    workingdir: /goinfre/yel-mass/taskmaster
+    umask: 026
+    workingdir: /home/kamui/Desktop/taskmaster
     autostart: true
     autorestart: always
     exitcodes: [0]
@@ -12,37 +12,37 @@ programs:
     starttime: 2
     stopsignal: TERM
     stoptime: 5
-    stdout: /goinfre/yel-mass/taskmaster/logs/logger.stdout
-    stderr: /goinfre/yel-mass/taskmaster/logs/logger.stderr
+    stdout: /home/zlazrak/taskmaster/logs/logger.stdout
+    stderr: /home/zlazrak/taskmaster/logs/logger.stderr
     env:
       STARTED_BY: kamui
       LOG_INTERVAL: "5"
 
   # Worker - Python with proper output (FIXED)
   worker:
-    cmd: "/bin/bash /goinfre/yel-mass/taskmaster/scripts/worker.sh"
+    cmd: "/bin/bash /home/zlazrak/taskmaster/scripts/worker.sh"
     numprocs: 3
     umask: 022
-    workingdir: /goinfre/yel-mass/taskmaster
+    workingdir: /home/zlazrak/taskmaster
     autostart: true
     autorestart: never
     exitcodes: [0, 2, 3, 4, 1]
     startretries: 3
     starttime: 3
     stopsignal: INT
-    stoptime: 50
-    stdout: /goinfre/yel-mass/taskmaster/logs/worker.stdout
-    stderr: /goinfre/yel-mass/taskmaster/logs/worker.stderr
+    stoptime: 5
+    stdout: /home/zlazrak/taskmaster/logs/worker.stdout
+    stderr: /home/zlazrak/taskmaster/logs/worker.stderr
     env:
       WORKER_ID: "1"
       ENVIRONMENT: "production"
 
   # Ping monitor - advanced network checker
   ping_monitor:
-    cmd: "/bin/bash /goinfre/yel-mass/taskmaster/scripts/ping_monitor.sh"
+    cmd: "/bin/bash /home/zlazrak/taskmaster/scripts/ping_monitor.sh"
     numprocs: 1
     umask: 022
-    workingdir: /goinfre/yel-mass/taskmaster
+    workingdir: /home/zlazrak/taskmaster
     autostart: true
     autorestart: always
     exitcodes: [0]
@@ -50,18 +50,18 @@ programs:
     starttime: 2
     stopsignal: TERM
     stoptime: 5
-    stdout: /goinfre/yel-mass/taskmaster/logs/ping_monitor.stdout
-    stderr: /goinfre/yel-mass/taskmaster/logs/ping_monitor.stderr
+    stdout: /home/zlazrak/taskmaster/logs/ping_monitor.stdout
+    stderr: /home/zlazrak/taskmaster/logs/ping_monitor.stderr
     env:
       PING_TARGET: "8.8.8.8"
       PING_INTERVAL: "10"
 
   # Counter - useful one-shot or scheduled runs
   counter:
-    cmd: "/bin/bash /goinfre/yel-mass/taskmaster/scripts/counter.sh"
+    cmd: "/bin/bash /home/zlazrak/taskmaster/scripts/counter.sh"
     numprocs: 1
     umask: 022
-    workingdir: /goinfre/yel-mass/taskmaster
+    workingdir: /home/zlazrak/taskmaster
     autostart: false
     autorestart: never
     exitcodes: [0]
@@ -69,8 +69,8 @@ programs:
     starttime: 1
     stopsignal: TERM
     stoptime: 5
-    stdout: /goinfre/yel-mass/taskmaster/logs/counter.stdout
-    stderr: /goinfre/yel-mass/taskmaster/logs/counter.stderr
+    stdout: /home/zlazrak/taskmaster/logs/counter.stdout
+    stderr: /home/zlazrak/taskmaster/logs/counter.stderr
     env:
       COUNT_TO: "100"
 
@@ -79,7 +79,7 @@ programs:
     cmd: "/usr/bin/python3 -u -m http.server 9000"
     numprocs: 1
     umask: 022
-    workingdir: /goinfre/yel-mass/taskmaster
+    workingdir: /home/zlazrak/taskmaster
     autostart: false
     autorestart: always
     exitcodes: [0]
@@ -87,17 +87,17 @@ programs:
     starttime: 2
     stopsignal: TERM
     stoptime: 5
-    stdout: /goinfre/yel-mass/taskmaster/logs/http_server.stdout
-    stderr: /goinfre/yel-mass/taskmaster/logs/http_server.stderr
+    stdout: /home/zlazrak/taskmaster/logs/http_server.stdout
+    stderr: /home/zlazrak/taskmaster/logs/http_server.stderr
     env:
       PYTHONUNBUFFERED: "1"
 
   # Test exit codes
   test_exit:
-    cmd: "/bin/bash /goinfre/yel-mass/taskmaster/scripts/test_exit.sh"
+    cmd: "/bin/bash /home/zlazrak/taskmaster/scripts/test_exit.sh"
     numprocs: 1
-    umask: 022
-    workingdir: /goinfre/yel-mass/taskmaster
+    umask: 026
+    workingdir: /home/kamui/Desktop/taskmaster
     autostart: false
     autorestart: unexpected
     exitcodes: [0, 2]

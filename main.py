@@ -511,7 +511,6 @@ class JobManager:
                             # Log to file only
                             if self.logger:
                                 self.logger.info(f"Stopped {name}:{i} gracefully")
-                            self.log_process_event(f"{name}:{i}", 'STOPPED', 'stopped gracefully')
                             break
                         time.sleep(0.1)
 
@@ -621,7 +620,13 @@ def main():
     monitor = None
     
     def cleanup_handler(signum, frame):
-        """Handle termination signals"""
+        """Handle signals"""
+        if signum == signal.SIGHUP:
+            print("\n\nReceived SIGHUP, reloading configuration...")
+            if manager:
+                manager.reload_config()
+            return
+
         print(f"\n\nReceived signal {signum}, shutting down...")
         if manager:
             manager.stop_all_jobs()
@@ -634,6 +639,7 @@ def main():
     
     signal.signal(signal.SIGTERM, cleanup_handler)
     signal.signal(signal.SIGINT, cleanup_handler)
+    signal.signal(signal.SIGHUP, cleanup_handler)
     
     try:
         manager = JobManager(config=config, config_path=file_path)
