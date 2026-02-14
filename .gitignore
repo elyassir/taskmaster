@@ -1,11 +1,15 @@
 logs/*
-.env
+
+# Python cache
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
+
 .vscode/
 taskmaster.log
-vv
-main.cpp
-a.out
 __pycache__
 supervisord.conf
+
+.env
+venv/
+.venv/
