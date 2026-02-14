@@ -9,7 +9,7 @@ __pycache__/
 taskmaster.log
 __pycache__
 supervisord.conf
-
+vv
 .env
 venv/
 .venv/
